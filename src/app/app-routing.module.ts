@@ -7,7 +7,7 @@ import { UnauthenticationGuard } from './guards/unauthentication.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent, canActivate: [UnauthenticationGuard] },
-  { path: 'main', loadChildren: './main/main.module#MainModule', canActivate: [AuthenticationGuard] }
+  { path: 'main', loadChildren: './main/main.module', canActivate: [AuthenticationGuard] }
 ];
 
 @NgModule({

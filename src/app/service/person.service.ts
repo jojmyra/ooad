@@ -9,6 +9,7 @@ export class PersonService {
   constructor(private http: HttpService) { }
 
   public personLoginDetail: ILoginDetail
+
   public setPersonLoginDetail(loginDetail: ILoginDetail) {
     this.personLoginDetail = loginDetail
   }
@@ -21,8 +22,7 @@ export class PersonService {
   getPersonLogin(accessToken: string) {
     return (this.http
       .requestGet('api/person/loginData', accessToken)
-      .toPromise() as Promise<ILoginDetail>)
-      .then(loginDetail => this.setPersonLoginDetail(loginDetail));
+      .toPromise() as Promise<ILoginDetail>);
   }
 }
 

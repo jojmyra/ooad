@@ -1,20 +1,22 @@
 <!-- Sidebar menu-->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
-    <div *ngIf="personLoginDetail" class="app-sidebar__user">
-        <img *ngIf="personLoginDetail.image" class="app-sidebar__user-avatar" [src]="personLoginDetail.image" alt="User Image">
-        <img *ngIf="!personLoginDetail.image" class="app-sidebar__user-avatar" src="assets/images/no-image-profile.png" alt="User Image">
-        <div class="app-sidebar-ud">
-            <p class="app-sidebar__user-name">
-                {{ personLoginDetail.firstname }} {{ personLoginDetail.lastname }}
-            </p>
-            <p class="app-sidebar__user-designation">
-                {{ personLoginDetail.position }}
-            </p>
-        </div>
+  <div *ngIf="personLoginDetail" class="app-sidebar__user">
+    <img *ngIf="personLoginDetail.image" class="app-sidebar__user-avatar" [src]="personLoginDetail.image"
+      alt="User Image">
+    <img *ngIf="!personLoginDetail.image" class="app-sidebar__user-avatar" src="assets/images/no-image-profile.png"
+      alt="User Image">
+    <div class="app-sidebar-ud">
+      <p class="app-sidebar__user-name">
+        {{ personLoginDetail.name }}
+      </p>
+      <p class="app-sidebar__user-designation">
+        สถานะ: {{ personLoginDetail.position }}
+      </p>
     </div>
-    <ul class="app-menu">
-        <!-- <li *ngIf="personLoginDetail.role != Role.Member">
+  </div>
+  <ul class="app-menu">
+    <!-- <li *ngIf="personLoginDetail.role != Role.Member">
             <a class="app-menu__item" [routerLink]="['/', AppURL.Authen, AuthURL.Dashboard]" routerLinkActive="active">
                 <i class="app-menu__icon fa fa-dashboard"></i>
                 <span class="app-menu__label">แดชบอร์ด</span>
@@ -39,19 +41,19 @@
                 </li>
             </ul>
         </li> -->
-        <li class="treeview" routerLinkActive="is-expanded">
-            <a class="app-menu__item" href="#" data-toggle="treeview">
-                <i class="app-menu__icon fa fa-laptop"></i>
-                <span class="app-menu__label">ส่วนของหน้า UI</span>
-                <i class="treeview-indicator fa fa-angle-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li>
-                    <a class="treeview-item">
-                        <i class="icon fa fa-circle-o"></i> Test Icon
-                    </a>
-                </li>
-                <!-- <li>
+    <li class="treeview" routerLinkActive="is-expanded">
+      <a class="app-menu__item" href="#" data-toggle="treeview">
+        <i class="app-menu__icon fa fa-laptop"></i>
+        <span class="app-menu__label">ส่วนของหน้า UI</span>
+        <i class="treeview-indicator fa fa-angle-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li>
+          <a class="treeview-item">
+            <i class="icon fa fa-circle-o"></i> Test Icon
+          </a>
+        </li>
+        <!-- <li>
                     <a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener">
                         <i class="icon fa fa-circle-o"></i> Font Icons
                     </a>
@@ -66,96 +68,69 @@
                         <i class="icon fa fa-circle-o"></i> Widgets
                     </a>
                 </li> -->
-            </ul>
+      </ul>
+    </li>
+    <li class="treeview">
+      <a class="app-menu__item" href="#" data-toggle="treeview">
+        <i class="app-menu__icon fa fa-edit"></i>
+        <span class="app-menu__label">จัดการบุคลากร</span>
+        <i class="treeview-indicator fa fa-angle-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li>
+          <a class="treeview-item">
+            <i class="icon fa fa-circle-o"></i> จัดการนิสิต</a>
         </li>
         <li>
-            <a class="app-menu__item" href="charts.html">
-                <i class="app-menu__icon fa fa-pie-chart"></i>
-                <span class="app-menu__label">ส่วนของกราฟ</span>
-            </a>
+          <a class="treeview-item" href="form-custom.html">
+            <i class="icon fa fa-circle-o"></i> จัดการอาจารย์</a>
         </li>
-        <li class="treeview">
-            <a class="app-menu__item" href="#" data-toggle="treeview">
-                <i class="app-menu__icon fa fa-edit"></i>
-                <span class="app-menu__label">ส่วนของฟอร์ม</span>
-                <i class="treeview-indicator fa fa-angle-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li>
-                    <a class="treeview-item" href="form-components.html">
-                        <i class="icon fa fa-circle-o"></i> Form Components</a>
-                </li>
-                <li>
-                    <a class="treeview-item" href="form-custom.html">
-                        <i class="icon fa fa-circle-o"></i> Custom Components</a>
-                </li>
-                <li>
-                    <a class="treeview-item" href="form-samples.html">
-                        <i class="icon fa fa-circle-o"></i> Form Samples</a>
-                </li>
-                <li>
-                    <a class="treeview-item" href="form-notifications.html">
-                        <i class="icon fa fa-circle-o"></i> Form Notifications</a>
-                </li>
-            </ul>
+        <li>
+          <a class="treeview-item" href="form-samples.html">
+            <i class="icon fa fa-circle-o"></i> จัดการบุคลากร</a>
         </li>
-        <li class="treeview">
-            <a class="app-menu__item" href="#" data-toggle="treeview">
-                <i class="app-menu__icon fa fa-th-list"></i>
-                <span class="app-menu__label">ส่วนของตาราง</span>
-                <i class="treeview-indicator fa fa-angle-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li>
-                    <a class="treeview-item" href="table-basic.html">
-                        <i class="icon fa fa-circle-o"></i> Basic Tables</a>
-                </li>
-                <li>
-                    <a class="treeview-item" href="table-data-table.html">
-                        <i class="icon fa fa-circle-o"></i> Data Tables</a>
-                </li>
-            </ul>
+      </ul>
+    </li>
+    <li class="treeview">
+      <a class="app-menu__item" href="#" data-toggle="treeview">
+        <i class="app-menu__icon fa fa-th-list"></i>
+        <span class="app-menu__label">จัดการวิชา</span>
+        <i class="treeview-indicator fa fa-angle-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li>
+          <a class="treeview-item" [routerLink]="['/main/manager-subject']">
+            <i class="icon fa fa-circle-o"></i> จัดการรายวิชา</a>
         </li>
-        <li class="treeview">
-            <a class="app-menu__item" href="#" data-toggle="treeview">
-                <i class="app-menu__icon fa fa-file-text"></i>
-                <span class="app-menu__label">ส่วนของหน้าเว็บ</span>
-                <i class="treeview-indicator fa fa-angle-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li>
-                    <a class="treeview-item" href="blank-page.html">
-                        <i class="icon fa fa-circle-o"></i> Blank Page</a>
-                </li>
-                <li>
-                    <a class="treeview-item" href="page-login.html">
-                        <i class="icon fa fa-circle-o"></i> Login Page</a>
-                </li>
-                <li>
-                    <a class="treeview-item" href="page-lockscreen.html">
-                        <i class="icon fa fa-circle-o"></i> Lockscreen Page</a>
-                </li>
-                <li>
-                    <a class="treeview-item" href="page-user.html">
-                        <i class="icon fa fa-circle-o"></i> User Page</a>
-                </li>
-                <li>
-                    <a class="treeview-item" href="page-invoice.html">
-                        <i class="icon fa fa-circle-o"></i> Invoice Page</a>
-                </li>
-                <li>
-                    <a class="treeview-item" href="page-calendar.html">
-                        <i class="icon fa fa-circle-o"></i> Calendar Page</a>
-                </li>
-                <li>
-                    <a class="treeview-item" href="page-mailbox.html">
-                        <i class="icon fa fa-circle-o"></i> Mailbox</a>
-                </li>
-                <li>
-                    <a class="treeview-item" href="page-error.html">
-                        <i class="icon fa fa-circle-o"></i> Error Page</a>
-                </li>
-            </ul>
+        <li>
+          <a class="treeview-item" [routerLink]="['/main/manager-course']">
+            <i class="icon fa fa-circle-o"></i> จัดการคอร์ส</a>
         </li>
-    </ul>
+      </ul>
+    </li>
+    <li class="treeview">
+      <a class="app-menu__item" href="#" data-toggle="treeview">
+        <i class="app-menu__icon fa fa-th-list"></i>
+        <span class="app-menu__label">จัดการสอบ</span>
+        <i class="treeview-indicator fa fa-angle-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li>
+          <a class="treeview-item" [routerLink]="['/main/manager-course']">
+            <i class="icon fa fa-circle-o"></i> จัดการรายวิชา</a>
+        </li>
+        <li>
+          <a class="treeview-item" [routerLink]="['/main/manager-course']">
+            <i class="icon fa fa-circle-o"></i> จัดการคอร์ส</a>
+        </li>
+      </ul>
+    </li>
+    <li class="treeview">
+      <a class="app-menu__item" href="#" data-toggle="treeview">
+        <i class="app-menu__icon fa fa-file-text"></i>
+        <span class="app-menu__label"><a [routerLink]="['/main/manager-building']">จัดการตึก</a></span>
+        <i class="treeview-indicator"></i>
+      </a>
+    </li>
+  </ul>
 </aside>

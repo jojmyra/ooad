@@ -24,26 +24,19 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
-  private initialPersonLogin() {
+  private initialPersonLogin() {    
     this.personLoginDetail = this.personService.personLoginDetail
-    if (this.personLoginDetail.username) return setTimeout(() => App.initialLoadPage(), 100)
-
+    if (this.personLoginDetail) return setTimeout(() => App.initialLoadPage(), 100)
     this.personService.getPersonLogin(this.authenticator.getAuthenticated())
       .then(personLogin => {
+        this.personService.setPersonLoginDetail(personLogin)
         this.personLoginDetail = personLogin
         setTimeout(() => App.initialLoadPage(), 100)
       }).catch((err) => {
-        // console.log(err);
-        // this.alert.notify(err.message);
-        // this.authenticator.clearAuthenticated();
-        // this.router.navigate(['/'])
+        this.alert.notify(err.message);
+        this.authenticator.clearAuthenticated();
+        this.router.navigate(['/'])
       });
   }
 
-}
-
-interface ILoginDetail {
-  username: string;
-  name: string;
-  position: string;
 }

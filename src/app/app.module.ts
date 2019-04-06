@@ -15,15 +15,6 @@ import { AlertService } from './service/alert.service';
 import { PersonService } from './service/person.service';
 import { TemplatesModule } from './templates/templates.module';
 
-// import { SidebarComponent } from './templates/sidebar/sidebar.component';
-// import { NavbarTeacherComponent } from './templates/navbar-teacher/navbar-teacher.component';
-// import { SidebarTeacherComponent } from './templates/sidebar-teacher/sidebar-teacher.component';
-// import { SidebarStudentComponent } from './templates/sidebar-student/sidebar-student.component';
-// import { SidebarOfficerComponent } from './templates/sidebar-officer/sidebar-officer.component';
-// import { NavbarComponent } from './templates/navbar/navbar.component';
-// import { ContentComponent } from './templates/content/content.component';
-
-
 @NgModule({
   declarations: [
     AppComponent,

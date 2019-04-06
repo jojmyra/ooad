@@ -1,0 +1,43 @@
+<app-content>
+  <div class="app-title">
+    <div>
+      <h1><i class="fa fa-th-list"></i> จัดการรายวิชา</h1>
+      <p>เพิ่มรายวิชา</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+      <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+      <li class="breadcrumb-item">จัดการรายวิชา</li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <div class="tile-body">
+          <button type="button" class="btn btn-outline-success btn-block"
+            style="font-size: 14px; width: 100px;height: 30px;; float: right;" data-toggle="modal"
+            data-target="#AddModal">เพิ่ม</button>
+          <table class="table table-hover table-bordered" id="sampleTable">
+            <thead>
+              <tr>
+                <th>รหัสวิชา</th>
+                <th>รายวิชา</th>
+                <th>เปิดสอน</th>
+                <th>ลบ</th>
+                <th>แก้ไข</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>subjectId</td>
+                <td>subjectName</td>
+                <td><button class="btn btn-outline-primary">เปิดสอน</button></td>
+                <td><button type="button" class="btn btn-outline-danger btn-block">ลบ</button></td>
+                <td><button type="button" class="btn btn-outline-warning btn-block">แก้ไข</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-content>
