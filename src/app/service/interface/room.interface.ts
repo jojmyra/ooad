@@ -1,11 +1,15 @@
 import { PageChangedEvent } from 'ngx-bootstrap';
 
 export interface Item {
-    subjectId: string;
-    subjectName: string;
+    buildingId: string;
+    roomName: string;
+    roomType: string;
+    roomFloor: string;
+    roomplan: Number;
+    roomSeat: Number;
 }
 
-export interface SubjectInterface {
+export interface RoomInterface {
     items: ItemList;
 
     // ส่วนของการค้นหา
@@ -34,8 +38,8 @@ export interface Search {
     searchText?: string;
     searchType?: string;
 
-    startPage: number;
-    limitPage: number;
+    startPage?: number;
+    limitPage?: number;
 }
 
 export interface SearchKey {

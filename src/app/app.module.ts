@@ -23,12 +23,7 @@ import { TemplatesModule } from './templates/templates.module';
     AppRoutingModule,
     TemplatesModule
   ],
-  providers: [
-    HttpService,
-    AuthenticatorService,
-    AlertService,
-    PersonService
-  ],
+  providers: [  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

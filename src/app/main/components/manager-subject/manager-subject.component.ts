@@ -1,5 +1,5 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { SubjectInterface, Item, ItemList, Search, SearchKey } from 'src/app/service/interface/subject';
+import { Component, OnInit, TemplateRef, SimpleChanges } from '@angular/core';
+import { SubjectInterface, Item, ItemList, Search, SearchKey } from 'src/app/service/interface/subject.interface';
 import { PageChangedEvent } from 'ngx-bootstrap';
 import { SubjectService } from 'src/app/service/subject.service';
 import { AlertService } from 'src/app/service/alert.service';
@@ -21,7 +21,10 @@ export class ManagerSubjectComponent implements OnInit, SubjectInterface {
   }
 
   ngOnInit() {
-
+    this.loadSubjects({
+      startPage: this.startPage,
+      limitPage: this.limitPage
+    })
   }
 
   items: ItemList;
@@ -47,8 +50,8 @@ export class ManagerSubjectComponent implements OnInit, SubjectInterface {
     throw new Error("Method not implemented.");
   }
 
-  onDeleteMember(_id: string): void {
-    this.subject.deleteSubject(_id).then(() => {
+  onDeleteMember(id: string) {
+    this.subject.deleteSubject(id).then((result) => {      
       this.loadSubjects({
         startPage: this.startPage,
         limitPage: this.limitPage
@@ -90,9 +93,14 @@ export class ManagerSubjectComponent implements OnInit, SubjectInterface {
   private loadSubjects(options?: Search) {
     this.subject.getSubjects(options).then((result) => {
       this.items = result
+      this.subject.setItemList(result)
     }).catch((err) => {
       this.alert.notify(err.message)
     });
+  }
+
+  ngDoCheck(): void {
+    this.items = this.subject.itemList
   }
 
 }

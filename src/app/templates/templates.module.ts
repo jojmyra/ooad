@@ -8,6 +8,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, ModalModule, PaginationModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
+import { PersonService } from '../service/person.service';
+import { AlertService } from '../service/alert.service';
+import { AuthenticatorService } from '../authenticator.service';
+import { HttpService } from '../http.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,12 @@ import { HttpClientModule } from '@angular/common/http';
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
     BsDatepickerModule.forRoot()
+  ],
+  providers: [
+    HttpService,
+    AuthenticatorService,
+    AlertService,
+    PersonService
   ]
 })
 export class TemplatesModule { }
