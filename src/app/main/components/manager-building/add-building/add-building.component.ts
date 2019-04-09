@@ -1,22 +1,22 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { AlertService } from 'src/app/service/alert.service';
-import { SubjectService } from 'src/app/service/subject.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AlertService } from 'src/app/service/alert.service';
+import { BuildingService } from 'src/app/service/building.service';
 
 @Component({
-  selector: 'app-add-subject',
-  templateUrl: './add-subject.component.html',
-  styleUrls: ['./add-subject.component.sass']
+  selector: 'app-add-building',
+  templateUrl: './add-building.component.html',
+  styleUrls: ['./add-building.component.sass']
 })
-export class AddSubjectComponent implements OnInit {
+export class AddBuildingComponent implements OnInit {
 
   modalRef: BsModalRef;
   form: FormGroup
 
   constructor(private modalService: BsModalService,
     private alert: AlertService,
-    private subject: SubjectService,
+    private service: BuildingService,
     private builder: FormBuilder) {
     this.initialForm();
   }
@@ -33,13 +33,13 @@ export class AddSubjectComponent implements OnInit {
     if (this.form.invalid) {
       return this.alert.someting_wrong();
     }
-    this.subject.addSubject(this.form.value).then((result) => {
+    this.service.addBuilding(this.form.value).then((result) => {
       this.alert.notify(result.message, 'info')
-      this.subject.getSubjects({
+      this.service.getBuildings({
         startPage: 1,
         limitPage: 5
-      }).then((subjectList) => {
-        this.subject.setItemList(subjectList)
+      }).then((list) => {
+        this.service.setItemList(list)
       }).catch((err) => {
         this.alert.notify(err.message)
       });
@@ -56,9 +56,8 @@ export class AddSubjectComponent implements OnInit {
 
   initialForm() {
     this.form = this.builder.group({
-      subjectId: ['', [Validators.required]],
-      subjectName: ['', [Validators.required]]
+      buildingId: ['', [Validators.required]],
+      buildingName: ['', [Validators.required]]
     })
   }
-
 }

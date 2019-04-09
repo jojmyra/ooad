@@ -1,5 +1,5 @@
-import { Component, OnInit, TemplateRef, SimpleChanges } from '@angular/core';
-import { SubjectInterface, Item, ItemList, Search, SearchKey } from 'src/app/service/interface/subject.interface';
+import { Component, OnInit } from '@angular/core';
+import { SubjectInterface, ItemList, Search, SearchKey } from 'src/app/service/interface/subject.interface';
 import { PageChangedEvent } from 'ngx-bootstrap';
 import { SubjectService } from 'src/app/service/subject.service';
 import { AlertService } from 'src/app/service/alert.service';
@@ -50,7 +50,7 @@ export class ManagerSubjectComponent implements OnInit, SubjectInterface {
     throw new Error("Method not implemented.");
   }
 
-  onDeleteMember(id: string) {
+  onDelete(id: string) {
     this.subject.deleteSubject(id).then((result) => {      
       this.loadSubjects({
         startPage: this.startPage,
@@ -62,7 +62,7 @@ export class ManagerSubjectComponent implements OnInit, SubjectInterface {
     });
   }
 
-  onUpdateMember(_id: string): void {
+  onUpdate(_id: string): void {
     throw new Error("Method not implemented.");
   }
 

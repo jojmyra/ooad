@@ -1,42 +1,106 @@
 <app-content>
   <div class="app-title">
     <div>
-      <h1><i class="fa fa-th-list"></i>จัดการตึก</h1>
-      <p>เพิ่ม ลบ แก้ไข ตึก</p>
+      <h1>
+        <i class="fa fa-users"></i> จัดการรายวิชา</h1>
+      <p>หน้าแสดงรายการ สมาชิก ค้นหา และแก้ไข</p>
     </div>
-    <ul class="app-breadcrumb breadcrumb side">
-      <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-      <li class="breadcrumb-item">จัดการตึก</li>
+    <ul class="app-breadcrumb breadcrumb">
+      <li class="breadcrumb-item">
+        <i class="fa fa-home fa-lg"></i>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="#">จัดการรายวิชา</a>
+      </li>
     </ul>
   </div>
   <div class="row">
     <div class="col-md-12">
       <div class="tile">
-        <div class="tile-body">
-          <button type="button" class="btn btn-outline-success btn-block"
-            style="font-size: 14px; width: 100px;height: 30px;; float: right;" data-toggle="modal"
-            data-target="#AddModal">เพิ่ม</button>
-          <table class="table table-hover table-bordered" id="sampleTable">
-            <thead>
-              <tr>
-                <th>ชื่อย่อ</th>
-                <th>ชื่อตึก</th>
-                <th>จัดการห้อง</th>
-                <th>ลบ</th>
-                <th>แก้ไข</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>buildingId</td>
-                <td>buildingName</td>
-                <td><button type="button" class="btn btn-outline-info btn-block">จัดการห้อง</button></td>
-                <td><button type="button" class="btn btn-outline-danger btn-block">ลบ</button></td>
-                <td><button type="button" class="btn btn-outline-warning btn-block" data-toggle="modal"
-                    data-target="#EditModal">แก้ไข</button></td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- ส่วนหัว -->
+        <div class="tile-title-w-btn">
+          <h3 class="title">
+            <i class="fa fa-list"></i> รายการข้อรายวิชา
+          </h3>
+          <!-- ค้นหา -->
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend" dropdown>
+                <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                  aria-controls="dropdown-basic">
+                  {{ serachType.value }}
+                  <span class="caret"></span>
+                </button>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                  <li *ngFor="let item of searchTypeItems" role="menuitem">
+                    <a class="dropdown-item" (click)="serachType = item">
+                      {{ item.value }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div [ngSwitch]="serachType.key">
+                <input *ngSwitchCase="'updated'" bsDaterangepicker placement="left" type="text" [(ngModel)]="searchText"
+                  class="form-control" placeholder="ค้นหาข้อมูล">
+                <input *ngSwitchDefault type="text" [(ngModel)]="searchText" class="form-control"
+                  placeholder="ค้นหาข้อมูล">
+              </div>
+
+              <div class="input-group-append" style="margin-right: 5px;">
+                <button (click)="onSearchItem()" class="btn btn-primary" type="button">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+              <app-add-subject></app-add-subject>
+            </div>
+          </div>
+
+        </div>
+        <div class="tile-body" *ngIf="items">
+          <div class="table-responsive">
+            <table class="table">
+              <!-- Head -->
+              <thead>
+                <tr>
+                  <th>กลุ่มเรียน</th>
+                  <th>อาจารย์ผู้สอน</th>
+                  <th>จำนวนที่นั่ง</th>
+                  <th>จำนวนนิสิต</th>
+                  <th>รายชื่อนิสิต</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <!-- Body -->
+              <tbody>
+                <tr *ngFor="let item of items.items">
+                  <td>{{item.courseGroup}}</td>
+                  <td>{{item.professor}}</td>
+                  <td>{{item.courseSeat}}</td>
+                  <td>{{item.totalStudent}}</td>
+                  <td><button class="btn btn-outline-primary">รายชื่อนิสิต</button></td>
+                  <td class="text-right">
+                    <!-- <ng-template [ngIf]="UserLogin.role == Role.Admin"> -->
+                    <i (click)="onUpdate(item)" class="fa fa-edit cur"></i>
+                    <span> | </span>
+                    <!-- </ng-template> -->
+                    <i (click)="onDelete(item._id)" class="fa fa-trash cur"></i>
+                  </td>
+                </tr>
+              </tbody>
+              <!-- Foot -->
+              <tfoot>
+                <tr>
+                  <th colspan="7">
+                    จำนวนวิชาทั้งหมด {{ items.totalItems }} วิชา
+                  </th>
+                </tr>
+              </tfoot>
+            </table>
+            <pagination [(ngModel)]="startPage" [itemsPerPage]="limitPage" (pageChanged)="onPageChanged($event)"
+              [rotate]="false" [maxSize]="10" previousText="หน้าก่อนหน้า" nextText="หน้าถัดไป"
+              [totalItems]="items.totalItems"></pagination>
+          </div>
         </div>
       </div>
     </div>

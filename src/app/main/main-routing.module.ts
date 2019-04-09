@@ -6,12 +6,14 @@ import { ManagerCourseComponent } from './components/manager-course/manager-cour
 import { ManagerBuildingComponent } from './components/manager-building/manager-building.component';
 import { ManagerSubjectComponent } from './components/manager-subject/manager-subject.component';
 import { AddSubjectComponent } from './components/manager-subject/add-subject/add-subject.component';
+import { ManagerRoomComponent } from './components/manager-room/manager-room.component';
 
 const mainRouter: Routes = [
   { path: '', redirectTo: 'dashboard' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'manager-course', component: ManagerCourseComponent },
   { path: 'manager-building', component: ManagerBuildingComponent },
+  { path: 'manager-room/:buildingId', component: ManagerRoomComponent },
   { path: 'manager-subject', component: ManagerSubjectComponent },
   { path: 'add-subject', component: AddSubjectComponent }
 ];

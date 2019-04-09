@@ -1,22 +1,23 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { AlertService } from 'src/app/service/alert.service';
-import { SubjectService } from 'src/app/service/subject.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AlertService } from 'src/app/service/alert.service';
+import { RoomService } from 'src/app/service/room.service';
 
 @Component({
-  selector: 'app-add-subject',
-  templateUrl: './add-subject.component.html',
-  styleUrls: ['./add-subject.component.sass']
+  selector: 'app-add-room',
+  templateUrl: './add-room.component.html',
+  styleUrls: ['./add-room.component.sass']
 })
-export class AddSubjectComponent implements OnInit {
+export class AddRoomComponent implements OnInit {
+
 
   modalRef: BsModalRef;
   form: FormGroup
 
   constructor(private modalService: BsModalService,
     private alert: AlertService,
-    private subject: SubjectService,
+    private service: RoomService,
     private builder: FormBuilder) {
     this.initialForm();
   }
@@ -33,13 +34,13 @@ export class AddSubjectComponent implements OnInit {
     if (this.form.invalid) {
       return this.alert.someting_wrong();
     }
-    this.subject.addSubject(this.form.value).then((result) => {
+    this.service.addRoom(this.form.value).then((result) => {
       this.alert.notify(result.message, 'info')
-      this.subject.getSubjects({
+      this.service.getRooms({
         startPage: 1,
         limitPage: 5
-      }).then((subjectList) => {
-        this.subject.setItemList(subjectList)
+      }).then((list) => {
+        this.service.setItemList(list)
       }).catch((err) => {
         this.alert.notify(err.message)
       });
@@ -56,9 +57,19 @@ export class AddSubjectComponent implements OnInit {
 
   initialForm() {
     this.form = this.builder.group({
-      subjectId: ['', [Validators.required]],
-      subjectName: ['', [Validators.required]]
+      buildingId: ['', [Validators.required]],
+      roomName: ['', [Validators.required]],
+      roomType: ['', [Validators.required]],
+      roomFloor: ['', [Validators.required]],
+      roomSeat: ['', [Validators.required]],
+      roomplan: ['', [Validators.required]]
     })
   }
 
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    console.log("destroy");
+    
+  }
 }

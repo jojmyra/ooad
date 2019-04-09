@@ -22,6 +22,11 @@ export class RoomService {
     .toPromise() as Promise<ItemList>
   }
 
+  getRoomsByBuildingId(buldingId: {buildingId: string}) {
+    return this.http.requestGet(`api/room/building?${$.param(buldingId)}`, this.authenticator.getAuthenticated())
+    .toPromise() as Promise<ItemList>
+  }
+
   addRoom(Room: Item) {
     return this.http.requestPost(`api/room`, Room, this.authenticator.getAuthenticated())
     .toPromise() as Promise<any>

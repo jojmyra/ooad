@@ -24,8 +24,8 @@ export interface RoomInterface {
     onPageChanged(page: PageChangedEvent);
 
     getRoleName(role: string): string;
-    onDeleteMember(_id: string): void;
-    onUpdateMember(_id: string): void;
+    onDelete(_id: string): void;
+    onUpdate(_id: string): void;
 }
 
 

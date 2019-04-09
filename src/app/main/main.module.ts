@@ -10,6 +10,9 @@ import { ManagerSubjectComponent } from './components/manager-subject/manager-su
 import { ManagerBuildingComponent } from './components/manager-building/manager-building.component';
 import { ManagerRoomComponent } from './components/manager-room/manager-room.component';
 import { AddSubjectComponent } from './components/manager-subject/add-subject/add-subject.component';
+import { AddBuildingComponent } from './components/manager-building/add-building/add-building.component';
+import { AddCourseComponent } from './components/manager-course/add-course/add-course.component';
+import { AddRoomComponent } from './components/manager-room/add-room/add-room.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { AddSubjectComponent } from './components/manager-subject/add-subject/ad
     ManagerSubjectComponent,
     ManagerBuildingComponent,
     ManagerRoomComponent,
-    AddSubjectComponent
+    AddSubjectComponent,
+    AddBuildingComponent,
+    AddCourseComponent,
+    AddRoomComponent
   ],
   imports: [
     CommonModule,

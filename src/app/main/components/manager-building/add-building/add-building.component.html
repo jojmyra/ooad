@@ -1,0 +1,34 @@
+<div class="input-group-append">
+  <button (click)="openModal(template)" class="btn btn-primary" type="button">
+    <i class="fa fa-plus-circle"></i>
+  </button>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">เพิ่มตึก</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">ชื่อย่อ</span>
+        </div>
+        <input type="text" class="form-control" formControlName="buildingId">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">ชื่อตึก</span>
+        </div>
+        <input type="text" class="form-control" formControlName="building์ฟทำ">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" type="reset" (click)="modalRef.hide()">ยกเลิก</button>
+      <button type="submit" class="btn btn-primary" type="submit">ยืนยัน</button>
+    </div>
+  </form>
+</ng-template>

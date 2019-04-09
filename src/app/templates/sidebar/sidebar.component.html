@@ -108,7 +108,7 @@
         </li>
       </ul>
     </li>
-    <li class="treeview">
+    <!-- <li class="treeview">
       <a class="app-menu__item" href="#" data-toggle="treeview">
         <i class="app-menu__icon fa fa-th-list"></i>
         <span class="app-menu__label">จัดการสอบ</span>
@@ -124,13 +124,23 @@
             <i class="icon fa fa-circle-o"></i> จัดการคอร์ส</a>
         </li>
       </ul>
-    </li>
+    </li> -->
     <li class="treeview">
       <a class="app-menu__item" href="#" data-toggle="treeview">
-        <i class="app-menu__icon fa fa-file-text"></i>
-        <span class="app-menu__label"><a [routerLink]="['/main/manager-building']">จัดการตึก</a></span>
-        <i class="treeview-indicator"></i>
+        <i class="app-menu__icon fa fa-th-list"></i>
+        <span class="app-menu__label">จัดการสถานที่</span>
+        <i class="treeview-indicator fa fa-angle-right"></i>
       </a>
+      <ul class="treeview-menu">
+        <li>
+          <a class="treeview-item" [routerLink]="['/main/manager-building']">
+            <i class="icon fa fa-circle-o"></i> จัดการตึก</a>
+        </li>
+        <li>
+          <a class="treeview-item" [routerLink]="['/main/manager-room']">
+            <i class="icon fa fa-circle-o"></i> จัดการห้อง</a>
+        </li>
+      </ul>
     </li>
   </ul>
 </aside>
