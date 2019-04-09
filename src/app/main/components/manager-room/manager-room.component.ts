@@ -33,8 +33,8 @@ export class ManagerRoomComponent implements OnInit, RoomInterface {
   searchText: string;
   serachType: SearchKey;
   searchTypeItems: SearchKey[] = [
-    { key: 'serviceId', value: 'ค้นหาจากรหัสวิชา' },
-    { key: 'serviceName', value: 'ค้นหาจากชื่อวิชา' }
+    { key: 'roomType', value: 'ค้นหาจากประเภทตึก' },
+    { key: 'roomFloor', value: 'ค้นหาจากชั้นของตึก' }
   ];
 
   onSearchItem(): void {
