@@ -26,6 +26,7 @@ export class AddSubjectComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>) {
+    this.initialForm();
     this.modalRef = this.modalService.show(template);
   }
 

@@ -41,7 +41,7 @@
                 </li>
             </ul>
         </li> -->
-    <li class="treeview" routerLinkActive="is-expanded">
+    <!-- <li class="treeview" routerLinkActive="is-expanded">
       <a class="app-menu__item" href="#" data-toggle="treeview">
         <i class="app-menu__icon fa fa-laptop"></i>
         <span class="app-menu__label">ส่วนของหน้า UI</span>
@@ -53,57 +53,57 @@
             <i class="icon fa fa-circle-o"></i> Test Icon
           </a>
         </li>
-        <!-- <li>
-                    <a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-circle-o"></i> Font Icons
-                    </a>
-                </li>
-                <li>
-                    <a class="treeview-item" [routerLink]="['/', AppURL.Authen, AuthURL.Card]" routerLinkActive="active">
-                        <i class="icon fa fa-circle-o"></i> Cards
-                    </a>
-                </li>
-                <li>
-                    <a class="treeview-item" [routerLink]="['/', AppURL.Authen, AuthURL.Widget]" routerLinkActive="active">
-                        <i class="icon fa fa-circle-o"></i> Widgets
-                    </a>
-                </li> -->
+        <li>
+          <a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener">
+            <i class="icon fa fa-circle-o"></i> Font Icons
+          </a>
+        </li>
+        <li>
+          <a class="treeview-item" [routerLink]="['/', AppURL.Authen, AuthURL.Card]" routerLinkActive="active">
+            <i class="icon fa fa-circle-o"></i> Cards
+          </a>
+        </li>
+        <li>
+          <a class="treeview-item" [routerLink]="['/', AppURL.Authen, AuthURL.Widget]" routerLinkActive="active">
+            <i class="icon fa fa-circle-o"></i> Widgets
+          </a>
+        </li>
       </ul>
-    </li>
+    </li> -->
     <li class="treeview">
       <a class="app-menu__item" href="#" data-toggle="treeview">
-        <i class="app-menu__icon fa fa-edit"></i>
+        <i class="app-menu__icon fa fa-edit fa-lg"></i>
         <span class="app-menu__label">จัดการบุคลากร</span>
         <i class="treeview-indicator fa fa-angle-right"></i>
       </a>
       <ul class="treeview-menu">
+          <li>
+              <a class="treeview-item" [routerLink]="['/main', 'manager-person']">
+                <i class="icon fa fa-circle-o"></i> จัดการอาจารย์</a>
+            </li>
         <li>
-          <a class="treeview-item">
-            <i class="icon fa fa-circle-o"></i> จัดการนิสิต</a>
-        </li>
-        <li>
-          <a class="treeview-item" href="form-custom.html">
+          <a class="treeview-item"  [routerLink]="['/main', 'manager-person']">
             <i class="icon fa fa-circle-o"></i> จัดการอาจารย์</a>
         </li>
         <li>
-          <a class="treeview-item" href="form-samples.html">
+          <a class="treeview-item" [routerLink]="['/main', 'manager-person']">
             <i class="icon fa fa-circle-o"></i> จัดการบุคลากร</a>
         </li>
       </ul>
     </li>
     <li class="treeview">
       <a class="app-menu__item" href="#" data-toggle="treeview">
-        <i class="app-menu__icon fa fa-th-list"></i>
+        <i class="app-menu__icon fa fa-th-list fa-lg"></i>
         <span class="app-menu__label">จัดการวิชา</span>
         <i class="treeview-indicator fa fa-angle-right"></i>
       </a>
       <ul class="treeview-menu">
         <li>
-          <a class="treeview-item" [routerLink]="['/main/manager-subject']">
+          <a class="treeview-item" [routerLink]="['/main', 'manager-subject']">
             <i class="icon fa fa-circle-o"></i> จัดการรายวิชา</a>
         </li>
         <li>
-          <a class="treeview-item" [routerLink]="['/main/manager-course']">
+          <a class="treeview-item" [routerLink]="['/main', 'manager-course']">
             <i class="icon fa fa-circle-o"></i> จัดการคอร์ส</a>
         </li>
       </ul>
@@ -126,8 +126,8 @@
       </ul>
     </li> -->
     <li class="treeview">
-      <a class="app-menu__item" [routerLink]="['/main/manager-building']">
-        <i class="app-menu__icon fa fa-th-list"></i>
+      <a class="app-menu__item" [routerLink]="['/main', 'manager-building']">
+        <i class="app-menu__icon fa fa-building fa-lg"></i>
         <span class="app-menu__label">จัดการตึก</span>
         <i class="treeview-indicator fa fa-angle-right"></i>
       </a>

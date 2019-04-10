@@ -42,10 +42,11 @@ export class ManagerBuildingComponent implements OnInit, buildingInterface {
   }
 
   startPage: number = 1;
-  limitPage: number = 5;
+  limitPage: number = 10;
 
   onPageChanged(page: PageChangedEvent) {
-    throw new Error("Method not implemented.");
+    console.log(page);
+    
   }
 
   getRoleName(role: string): string {

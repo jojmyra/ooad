@@ -11,7 +11,6 @@ import { RoomService } from 'src/app/service/room.service';
 })
 export class AddRoomComponent implements OnInit {
 
-
   modalRef: BsModalRef;
   form: FormGroup
 
@@ -27,6 +26,7 @@ export class AddRoomComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>) {
+    this.initialForm();
     this.modalRef = this.modalService.show(template);
   }
 
@@ -67,9 +67,8 @@ export class AddRoomComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    console.log("destroy");
-    
+
   }
+  
+
 }

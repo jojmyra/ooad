@@ -63,21 +63,37 @@
               <!-- Head -->
               <thead>
                 <tr>
+                  <th>วิชา</th>
                   <th>กลุ่มเรียน</th>
+                  <th>จำนวนรองรับสูงสุด</th>
                   <th>อาจารย์ผู้สอน</th>
-                  <th>จำนวนที่นั่ง</th>
-                  <th>จำนวนนิสิต</th>
-                  <th>รายชื่อนิสิต</th>
+                  <th>จำนวนนิสิตที่ลงทะเบียน</th>
+                  <th></th>
                   <th></th>
                 </tr>
               </thead>
               <!-- Body -->
               <tbody>
                 <tr *ngFor="let item of items.items">
+                  <td>{{item.subject.subjectName}}</td>
                   <td>{{item.courseGroup}}</td>
-                  <td>{{item.professor}}</td>
                   <td>{{item.courseSeat}}</td>
-                  <td>{{item.totalStudent}}</td>
+                  <td>
+                    <ng-container *ngIf="item.professor.length > 0; else professorTemplate">
+                      {{item.professor}}
+                    </ng-container>
+                    <ng-template #professorTemplate>
+                      ยังไม่เลือกผู้สอน
+                    </ng-template>
+                  </td>
+                  <td>
+                    <ng-container *ngIf="item.student.length > 0; else totalStudentTemplate">
+                      {{item.totalStudent}}
+                    </ng-container>
+                    <ng-template #totalStudentTemplate>
+                      ยังไม่มีนิสิตลงทะเบียน
+                    </ng-template>
+                  </td>
                   <td><button class="btn btn-outline-primary">รายชื่อนิสิต</button></td>
                   <td class="text-right">
                     <!-- <ng-template [ngIf]="UserLogin.role == Role.Admin"> -->
