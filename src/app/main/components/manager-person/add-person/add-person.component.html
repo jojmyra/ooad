@@ -1,0 +1,65 @@
+<div class="input-group-append">
+    <button (click)="openModal(template)" class="btn btn-primary" type="button">
+      <i class="fa fa-plus-circle"></i>
+    </button>
+  </div>
+  
+  <ng-template #template>
+    <form [formGroup]="form" (submit)="onSubmit()">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">เพิ่มบุคคลากร</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">ประเภท</label>
+          <div class="col-sm-10">
+            <select class="custom-select my-1 mr-sm-2" id="status" formControlName="status">
+              <option selected value="">กรุณาเลือก...</option>
+              <option value="นิสิต">นิสิต</option>
+              <option value="อาจารย์">อาจารย์</option>
+              <option value="เจ้าหน้าที่">เจ้าหน้าที่</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Username</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" formControlName="username" placeholder="กรุณากรอกข้อมูล">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" formControlName="password" placeholder="กรุณากรอกข้อมูล">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">firstname</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" formControlName="firstname" placeholder="กรุณากรอกข้อมูล">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">lastname</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" formControlName="lastname" placeholder="กรุณากรอกข้อมูล">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">email</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" formControlName="email"
+              placeholder="กรุณากรอกข้อมูล">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" type="reset"
+          (click)="modalRef.hide()">ยกเลิก</button>
+        <button type="submit" class="btn btn-primary" type="submit">ยืนยัน</button>
+      </div>
+    </form>
+  </ng-template>
