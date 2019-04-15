@@ -20,7 +20,7 @@
           <!-- ส่วนหัว -->
           <div class="tile-title-w-btn">
             <h3 class="title">
-              <i class="fa fa-list"></i> รายการข้อรายวิชา
+              <i class="fa fa-list"></i> รายชื่อบุคคลากร
             </h3>
             <!-- ค้นหา -->
             <div class="form-group">
@@ -52,7 +52,7 @@
                     <i class="fa fa-search"></i>
                   </button>
                 </div>
-                <app-add-subject></app-add-subject>
+                <app-add-person></app-add-person>
               </div>
             </div>
   
@@ -63,18 +63,20 @@
                 <!-- Head -->
                 <thead>
                   <tr>
-                    <th>รหัสวิชา</th>
-                    <th>รายวิชา</th>
-                    <th></th>
+                    <th>ประเภท</th>
+                    <th>ชื่อจริง</th>
+                    <th>นามสกุล</th>
+                    <th>อีเมล์</th>
                     <th></th>
                   </tr>
                 </thead>
                 <!-- Body -->
                 <tbody>
                   <tr *ngFor="let item of items.items">
-                    <td>{{item.subjectId}}</td>
-                    <td>{{item.subjectName}}</td>
-                    <td><button class="btn btn-outline-primary">เปิดสอน</button></td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.firstname}}</td>
+                    <td>{{item.lastname}}</td>
+                    <td>{{item.email}}</td>
                     <td class="text-right">
                       <!-- <ng-template [ngIf]="UserLogin.role == Role.Admin"> -->
                       <i (click)="onUpdate(item)" class="fa fa-edit cur"></i>
@@ -88,7 +90,7 @@
                 <tfoot>
                   <tr>
                     <th colspan="7">
-                      จำนวนวิชาทั้งหมด {{ items.totalItems }} วิชา
+                      จำนวนบุคลากรทั้งหมด {{ items.totalItems }} คน
                     </th>
                   </tr>
                 </tfoot>

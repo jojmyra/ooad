@@ -16,6 +16,7 @@ import { AddRoomComponent } from './components/manager-room/add-room/add-room.co
 import { SettingComponent } from './components/setting/setting.component';
 import { ManagerPersonComponent } from './components/manager-person/manager-person.component';
 import { ManagerExaminationComponent } from './components/manager-examination/manager-examination.component';
+import { AddPersonComponent } from './components/manager-person/add-person/add-person.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ManagerExaminationComponent } from './components/manager-examination/ma
     AddRoomComponent,
     SettingComponent,
     ManagerPersonComponent,
-    ManagerExaminationComponent
+    ManagerExaminationComponent,
+    AddPersonComponent
   ],
   imports: [
     CommonModule,

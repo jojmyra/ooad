@@ -65,5 +65,5 @@ interface ILogin {
 interface ILoginDetail {
   username: string;
   name: string;
-  position: string;
+  status: string;
 }
