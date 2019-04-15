@@ -1,6 +1,9 @@
 <app-content>
   <div class="app-title">
-      <h1><a [routerLink]="[ '/main', 'manager-building' ]"><i class="fa fa-angle-left"></i>  จัดการตึก</a></h1>
+    <div>
+      <h1><i class="fa fa-arrow-left"></i> <a [routerLink]="[ '/main', 'manager-building' ]">จัดการตึก</a></h1>
+      <p>ย้อนกลับ</p>
+    </div>
     <ul class="app-breadcrumb breadcrumb">
       <li class="breadcrumb-item">
         <i class="fa fa-home fa-lg"></i>
@@ -16,7 +19,8 @@
         <!-- ส่วนหัว -->
         <div class="tile-title-w-btn">
           <h3 class="title">
-            <i class="fa fa-list"></i> รายการห้องในตึก <span *ngIf="subscribeBuildingParam">{{subscribeBuildingParam}}</span>
+            <i class="fa fa-list"></i> รายการห้องในตึก <span
+              *ngIf="subscribeBuildingParam">{{subscribeBuildingParam}}</span>
           </h3>
           <!-- ค้นหา -->
           <div class="form-group">

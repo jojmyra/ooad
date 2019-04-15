@@ -11,8 +11,7 @@ import { AlertService } from 'src/app/service/alert.service';
   styleUrls: ['./manager-room.component.sass']
 })
 export class ManagerRoomComponent implements OnInit, RoomInterface {
-
-  subscribeBuildingParam: string
+  subscribeBuildingParam: string;
 
   constructor(private service: RoomService,
     private alert: AlertService,

@@ -13,6 +13,7 @@ import { AddSubjectComponent } from './components/manager-subject/add-subject/ad
 import { AddBuildingComponent } from './components/manager-building/add-building/add-building.component';
 import { AddCourseComponent } from './components/manager-course/add-course/add-course.component';
 import { AddRoomComponent } from './components/manager-room/add-room/add-room.component';
+import { SettingComponent } from './components/setting/setting.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { AddRoomComponent } from './components/manager-room/add-room/add-room.co
     AddSubjectComponent,
     AddBuildingComponent,
     AddCourseComponent,
-    AddRoomComponent
+    AddRoomComponent,
+    SettingComponent
   ],
   imports: [
     CommonModule,

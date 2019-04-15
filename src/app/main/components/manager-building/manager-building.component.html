@@ -74,7 +74,8 @@
                 <tr *ngFor="let item of items.items">
                   <td>{{item.buildingId}}</td>
                   <td>{{item.buildingName}}</td>
-                  <td><button class="btn btn-outline-primary" (click)="openRoom(item.buildingId)">ดูจำนวนห้อง</button></td>
+                  <td><button class="btn btn-outline-primary" (click)="openRoom(item.buildingId)">ดูจำนวนห้อง</button>
+                  </td>
                   <td class="text-right">
                     <!-- <ng-template [ngIf]="UserLogin.role == Role.Admin"> -->
                     <i (click)="onUpdate(item)" class="fa fa-edit cur"></i>

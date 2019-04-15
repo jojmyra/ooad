@@ -3,6 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/service/alert.service';
 import { RoomService } from 'src/app/service/room.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-room',
@@ -10,24 +11,28 @@ import { RoomService } from 'src/app/service/room.service';
   styleUrls: ['./add-room.component.sass']
 })
 export class AddRoomComponent implements OnInit {
-
+  subscribeBuildingParam: string;
   modalRef: BsModalRef;
   form: FormGroup
 
   constructor(private modalService: BsModalService,
     private alert: AlertService,
     private service: RoomService,
-    private builder: FormBuilder) {
+    private builder: FormBuilder,
+    private route: ActivatedRoute) {
     this.initialForm();
   }
 
   ngOnInit(): void {
-
+    this.route.paramMap.subscribe(params => {
+      this.subscribeBuildingParam = params.get("buildingId");
+    });
   }
 
   openModal(template: TemplateRef<any>) {
     this.initialForm();
     this.modalRef = this.modalService.show(template);
+    this.modalRef.setClass('modal-lg')
   }
 
   onSubmit(): void {

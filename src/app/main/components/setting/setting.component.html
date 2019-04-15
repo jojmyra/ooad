@@ -1,0 +1,46 @@
+<app-content>
+  <div class="app-title">
+    <div>
+      <h1>
+        <i class="fa fa-cog"></i> ตั้งค่าระบบ</h1>
+      <p>Start a beautiful journey here</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+      <li class="breadcrumb-item">
+        <i class="fa fa-home fa-lg"></i>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="#">ตั้งค่าระบบ</a>
+      </li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <div class="tile">
+        <div class="col-md-12">
+          <div class="tile-body">
+            <form #settingForm="ngForm" (submit)="onSubmit()">
+              <div class="form-group row">
+                <label for="year" class="col-sm-2 col-form-label">ภาคการศึกษาที่ 1</label>
+                <div class="col-sm-10">
+                  <input class="form-control" #drp="bsDaterangepicker" name="term1" bsDaterangepicker [(ngModel)]="term1">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="year" class="col-sm-2 col-form-label">ภาคการศึกษาที่ 2</label>
+                <div class="col-sm-10">
+                  <input class="form-control" #drp="bsDaterangepicker" name="term2" bsDaterangepicker [(ngModel)]="term2">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-12 right">
+                  <button type="submit" class="btn btn-primary">ตกลง</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-content>
