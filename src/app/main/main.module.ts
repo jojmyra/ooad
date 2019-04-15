@@ -14,6 +14,8 @@ import { AddBuildingComponent } from './components/manager-building/add-building
 import { AddCourseComponent } from './components/manager-course/add-course/add-course.component';
 import { AddRoomComponent } from './components/manager-room/add-room/add-room.component';
 import { SettingComponent } from './components/setting/setting.component';
+import { ManagerPersonComponent } from './components/manager-person/manager-person.component';
+import { ManagerExaminationComponent } from './components/manager-examination/manager-examination.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { SettingComponent } from './components/setting/setting.component';
     AddBuildingComponent,
     AddCourseComponent,
     AddRoomComponent,
-    SettingComponent
+    SettingComponent,
+    ManagerPersonComponent,
+    ManagerExaminationComponent
   ],
   imports: [
     CommonModule,

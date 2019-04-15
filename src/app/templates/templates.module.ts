@@ -5,7 +5,7 @@ import { ContentComponent } from './content/content.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule, ModalModule, PaginationModule, BsDatepickerModule } from 'ngx-bootstrap';
+import { BsDropdownModule, ModalModule, PaginationModule, BsDatepickerModule, TypeaheadModule  } from 'ngx-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
 import { PersonService } from '../service/person.service';
@@ -29,6 +29,7 @@ import { HttpService } from '../http.service';
     ModalModule,
     PaginationModule,
     BsDatepickerModule,
+    TypeaheadModule,
     AngularFontAwesomeModule,
     HttpClientModule
   ],
@@ -42,7 +43,8 @@ import { HttpService } from '../http.service';
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    TypeaheadModule.forRoot()
   ],
   providers: [
     HttpService,

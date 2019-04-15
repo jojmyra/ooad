@@ -1,8 +1,9 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService, TypeaheadMatch } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/service/alert.service';
 import { CourseService } from 'src/app/service/course.service';
+import { SubjectService } from 'src/app/service/subject.service';
 
 
 @Component({
@@ -12,11 +13,14 @@ import { CourseService } from 'src/app/service/course.service';
 })
 export class AddCourseComponent implements OnInit {
   modalRef: BsModalRef;
-  form: FormGroup
+  form: FormGroup;
+  subjectList: any[];
+  subjectName: string
 
   constructor(private modalService: BsModalService,
     private alert: AlertService,
     private service: CourseService,
+    private subject: SubjectService,
     private builder: FormBuilder) {
     this.initialForm();
   }
@@ -25,9 +29,26 @@ export class AddCourseComponent implements OnInit {
     
   }
 
+  typeaheadOnSelect(e: TypeaheadMatch): void {
+    this.subjectName = e.item.subjectName;
+  }
+
   openModal(template: TemplateRef<any>) {
     this.initialForm();
+    this.subjectName = null
     this.modalRef = this.modalService.show(template);
+    this.modalRef.setClass('modal-lg')
+    this.subject.getSubjects({
+      startPage: 1,
+      limitPage: 5
+    }).then((result) => {
+      this.subject.setItemList(result);
+    }).catch((err) => {
+      this.alert.notify(err)
+    }).finally(() => {
+      this.subjectList = this.subject.itemList.items
+    })
+    
   }
 
   onSubmit(): void {
@@ -57,7 +78,7 @@ export class AddCourseComponent implements OnInit {
 
   initialForm() {
     this.form = this.builder.group({
-      subject: ['', [Validators.required]],
+      subjectId: ['', [Validators.required]],
       courseId: ['', [Validators.required]],
       courseGroup: ['', [Validators.required]],
       courseSeat: ['', [Validators.required]],

@@ -8,11 +8,15 @@ import { ManagerSubjectComponent } from './components/manager-subject/manager-su
 import { AddSubjectComponent } from './components/manager-subject/add-subject/add-subject.component';
 import { ManagerRoomComponent } from './components/manager-room/manager-room.component';
 import { SettingComponent } from './components/setting/setting.component';
+import { AddCourseComponent } from './components/manager-course/add-course/add-course.component';
+import { ManagerPersonComponent } from './components/manager-person/manager-person.component';
 
 const mainRouter: Routes = [
   { path: '', redirectTo: 'dashboard' },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'manager-person', component: ManagerPersonComponent },
   { path: 'manager-course', component: ManagerCourseComponent },
+  { path: 'manager-course/add', component: AddCourseComponent },
   { path: 'manager-building', component: ManagerBuildingComponent },
   { path: 'manager-room/:buildingId', component: ManagerRoomComponent },
   { path: 'manager-subject', component: ManagerSubjectComponent },
