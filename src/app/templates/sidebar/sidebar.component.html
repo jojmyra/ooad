@@ -71,25 +71,11 @@
       </ul>
     </li> -->
     <li class="treeview">
-      <a class="app-menu__item" href="#" data-toggle="treeview">
+      <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'manager-person']">
         <i class="app-menu__icon fa fa-edit fa-lg"></i>
         <span class="app-menu__label">จัดการบุคลากร</span>
         <i class="treeview-indicator fa fa-angle-right"></i>
       </a>
-      <ul class="treeview-menu">
-          <li>
-              <a class="treeview-item" [routerLink]="['/main', 'manager-person']">
-                <i class="icon fa fa-circle-o"></i> จัดการอาจารย์</a>
-            </li>
-        <li>
-          <a class="treeview-item"  [routerLink]="['/main', 'manager-person']">
-            <i class="icon fa fa-circle-o"></i> จัดการอาจารย์</a>
-        </li>
-        <li>
-          <a class="treeview-item" [routerLink]="['/main', 'manager-person']">
-            <i class="icon fa fa-circle-o"></i> จัดการบุคลากร</a>
-        </li>
-      </ul>
     </li>
     <li class="treeview">
       <a class="app-menu__item" href="#" data-toggle="treeview">
@@ -109,21 +95,21 @@
       </ul>
     </li>
     <li class="treeview">
-      <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'manager-exam']" >
+      <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'manager-exam']">
         <i class="app-menu__icon fa fa-book fa-lg"></i>
         <span class="app-menu__label">จัดการสอบ</span>
         <i class="treeview-indicator fa fa-angle-right"></i>
       </a>
     </li>
     <li class="treeview">
-      <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'manager-building']" >
+      <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'manager-building']">
         <i class="app-menu__icon fa fa-building fa-lg"></i>
         <span class="app-menu__label">จัดการตึก</span>
         <i class="treeview-indicator fa fa-angle-right"></i>
       </a>
     </li>
     <li class="treeview">
-      <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'setting']" >
+      <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'setting']">
         <i class="app-menu__icon fa fa-cog fa-lg"></i>
         <span class="app-menu__label">ตั้งค่า</span>
         <i class="treeview-indicator fa fa-angle-right"></i>

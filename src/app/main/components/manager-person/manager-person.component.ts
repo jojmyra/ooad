@@ -93,8 +93,6 @@ export class ManagerPersonComponent implements OnInit, PersonInterface {
     this.person.getPersons(options).then((result) => {
       this.items = result
       this.person.setItemList(result)
-      console.log(result);
-      
     }).catch((err) => {
       this.alert.notify(err.message)
     });
