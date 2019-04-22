@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService, TypeaheadMatch } from 'ngx-bootstrap';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AlertService } from 'src/app/service/alert.service';
 import { CourseService } from 'src/app/service/course.service';
 import { SubjectService } from 'src/app/service/subject.service';
-
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-add-course',
@@ -26,7 +26,7 @@ export class AddCourseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
 
   typeaheadOnSelect(e: TypeaheadMatch): void {
@@ -48,28 +48,32 @@ export class AddCourseComponent implements OnInit {
     }).finally(() => {
       this.subjectList = this.subject.itemList.items
     })
-    
+
   }
 
   onSubmit(): void {
-    if (this.form.invalid) {
-      return this.alert.someting_wrong();
-    }
-    this.service.addCourse(this.form.value).then((result) => {
-      this.alert.notify(result.message, 'info')
-      this.service.getCourses({
-        startPage: 1,
-        limitPage: 5
-      }).then((list) => {
-        this.service.setItemList(list)
-      }).catch((err) => {
-        this.alert.notify(err.message)
-      });
-    }).catch((err) => {
-      this.alert.notify(err.message)
-    });
-    this.initialForm();
-    this.modalRef.hide();
+    this.form.value.student = this.listStudentId;
+    this.form.value.totalStudent = this.listStudentId.length
+    console.log(this.form.value);
+    
+    // if (this.form.invalid) {
+    //   return this.alert.someting_wrong();
+    // }
+    // this.service.addCourse(this.form.value).then((result) => {
+    //   this.alert.notify(result.message, 'info')
+    //   this.service.getCourses({
+    //     startPage: 1,
+    //     limitPage: 5
+    //   }).then((list) => {
+    //     this.service.setItemList(list)
+    //   }).catch((err) => {
+    //     this.alert.notify(err.message)
+    //   });
+    // }).catch((err) => {
+    //   this.alert.notify(err.message)
+    // });
+    // this.initialForm();
+    // this.modalRef.hide();
   }
 
   onCancel(): void {
@@ -77,18 +81,48 @@ export class AddCourseComponent implements OnInit {
   }
 
   initialForm() {
+    this.listStudentId = null;
     this.form = this.builder.group({
       subjectId: ['', [Validators.required]],
       courseId: ['', [Validators.required]],
       courseGroup: ['', [Validators.required]],
       courseSeat: ['', [Validators.required]],
-      totalStudent: ['', [Validators.required]],
-      student: ['', [Validators.required]],
+      totalStudent: new FormControl(),
+      student: new FormControl(),
       score: ['', [Validators.required]],
       professor: ['', [Validators.required]],
       courseYear: ['', [Validators.required]],
       courseTerm: ['', [Validators.required]]
     })
+  }
+
+  arrayBuffer: any;
+  file: File;
+  listStudentId: any = null;
+
+  onFileChange(event) {
+    const reader = new FileReader();
+
+    if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsArrayBuffer(file)
+      reader.onload = () => {
+        this.arrayBuffer = reader.result
+        var data = new Uint8Array(this.arrayBuffer);
+        var arr = new Array();
+        for (var i = 0; i != data.length; ++i) {
+          arr[i] = String.fromCharCode(data[i]);
+        }
+        var bstr = arr.join("");        
+        var workbook = XLSX.read(bstr, { type: "binary" });
+        var first_sheet_name = workbook.SheetNames[0];
+        var worksheet = workbook.Sheets[first_sheet_name];
+        var listStudent = XLSX.utils.sheet_to_json(worksheet, { raw: true, header: ["id", "studentName"] });
+        listStudent.shift()
+        this.listStudentId = listStudent.map( ({ id }) => id)        
+      };
+
+    }
   }
 
 }

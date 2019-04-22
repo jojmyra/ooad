@@ -45,11 +45,14 @@
                 <div class="col-sm-10">
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile04">
-                            <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                        </div>
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button">Button</button>
+                            <input type="file" class="custom-file-input" id="studentList" (change)="onFileChange($event)">
+                            <label class="custom-file-label" for="studentList"><ng-container *ngIf="listStudentId; else showNumStudent">
+                                จำนวนนักเรียนทั้งหมด {{listStudentId.length}} คน
+                            </ng-container>
+                            <ng-template #showNumStudent>
+                                กรุณาเลือกไฟล์ Excel
+                            </ng-template>
+                            </label>
                         </div>
                     </div>
                 </div>
