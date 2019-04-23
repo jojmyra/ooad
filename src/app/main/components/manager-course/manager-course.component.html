@@ -63,7 +63,7 @@
               <!-- Head -->
               <thead>
                 <tr>
-                  <th>วิชา</th>
+                  <th>รหัสวิชา</th>
                   <th>กลุ่มเรียน</th>
                   <th>จำนวนรองรับสูงสุด</th>
                   <th>อาจารย์ผู้สอน</th>
@@ -75,7 +75,7 @@
               <!-- Body -->
               <tbody>
                 <tr *ngFor="let item of items.items">
-                  <td>{{item.subject.subjectName}}</td>
+                  <td>{{item.subjectId}}</td>
                   <td>{{item.courseGroup}}</td>
                   <td>{{item.courseSeat}}</td>
                   <td>
