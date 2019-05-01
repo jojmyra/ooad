@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
     private alert: AlertService,
     private authenticator: AuthenticatorService,
     private system: SystemService) {
-
+    this.initialSystemData()
   }
 
   ngOnInit() {
