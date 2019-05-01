@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http.service';
 import { AuthenticatorService } from '../authenticator.service';
-import { Item, ItemList, Search } from 'src/app/service/interface/person.interface';
+import { Item, ItemList, Search, ILogin, ILoginDetail } from 'src/app/service/interface/person.interface';
 declare let $;
 
 @Injectable({
@@ -54,16 +54,4 @@ export class PersonService {
     return this.http.requestDelete(`api/person/${_id}`, this.authenticator.getAuthenticated())
     .toPromise() as Promise<any>
   }
-}
-
-interface ILogin {
-  email: string;
-  password: string;
-  remember: boolean;
-}
-
-interface ILoginDetail {
-  username: string;
-  name: string;
-  status: string;
 }

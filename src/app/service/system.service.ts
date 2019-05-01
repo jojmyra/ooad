@@ -9,7 +9,11 @@ declare let $;
 })
 export class SystemService {
 
-  systemInfo: System
+  systemData: System
+
+  setSystemData(systemData: System) {
+    this.systemData = systemData
+  }
 
   constructor(private http: HttpService,
     private authenticator: AuthenticatorService) {
@@ -18,6 +22,11 @@ export class SystemService {
   insertSystemData(systemData: SystemInput) {
     return this.http.requestPut(`api/system`, systemData, this.authenticator.getAuthenticated())
     .toPromise() as Promise<any>
+  }
+
+  getSystemData() {
+    return this.http.requestGet(`api/system`, this.authenticator.getAuthenticated())
+    .toPromise() as Promise<System>
   }
 
 

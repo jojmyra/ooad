@@ -1,19 +1,12 @@
 import { PageChangedEvent } from 'ngx-bootstrap';
 
 export interface Item {
-    username: string;
-    password: string;
-    firstname: string;
-    lastname: string;
-    email: string;
-    status: string;
-
-    faculty?: string;
-    major?: string;
-    position?: string;
+    examinationId : String
+    year : String
+    term : String
 }
 
-export interface PersonInterface {
+export interface ExamInterface {
     items: ItemList;
 
     // ส่วนของการค้นหา
@@ -42,23 +35,11 @@ export interface Search {
     searchText?: string;
     searchType?: string;
 
-    startPage: number;
-    limitPage: number;
+    startPage?: number;
+    limitPage?: number;
 }
 
 export interface SearchKey {
     key: string;
     value: string;
-}
-
-export interface ILogin {
-    email: string;
-    password: string;
-    remember: boolean;
-}
-
-export interface ILoginDetail {
-    username: string;
-    name: string;
-    status: string;
 }

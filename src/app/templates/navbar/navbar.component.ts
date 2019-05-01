@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/service/alert.service';
 import { AuthenticatorService } from 'src/app/authenticator.service';
+import { SystemService } from 'src/app/service/system.service';
+import { System } from 'src/app/service/interface/system';
 
 @Component({
   selector: 'app-navbar',
@@ -10,9 +12,19 @@ import { AuthenticatorService } from 'src/app/authenticator.service';
 })
 export class NavbarComponent implements OnInit {
 
+  systemData: System
+
   constructor(private router: Router,
     private alert: AlertService,
-    private authenticator: AuthenticatorService) { }
+    private authenticator: AuthenticatorService,
+    private system: SystemService) {
+      this.system.getSystemData().then((result) => {
+        this.system.setSystemData(result)
+        this.systemData = this.system.systemData
+      }).catch(() => {
+        this.alert.notify('เรียกข้อมูลจากตั้งค่าระบบไม่ได้', 'info')
+      });
+  }
 
   ngOnInit() {
   }

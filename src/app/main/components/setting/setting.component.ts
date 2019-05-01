@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SystemInterface, System } from 'src/app/service/interface/system';
 import { SystemService } from 'src/app/service/system.service';
 import { AlertService } from 'src/app/service/alert.service';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-setting',
@@ -12,13 +13,16 @@ export class SettingComponent implements OnInit, SystemInterface {
 
   systemInfo: System;
 
+  form: FormGroup
+
   bsValue = new Date();
   term1: Date[];
   term2: Date[];
   maxDate = new Date();
 
   constructor(private service: SystemService,
-    private alert: AlertService) {
+    private alert: AlertService,
+    private builder: FormBuilder) {
     this.maxDate.setDate(this.maxDate.getDate() + 7);
     this.term1 = [this.bsValue, this.maxDate];
     this.term2 = [this.bsValue, this.maxDate];
@@ -30,14 +34,12 @@ export class SettingComponent implements OnInit, SystemInterface {
     this.term2 = [this.bsValue, this.maxDate];
   }
 
-  onupdate(): void {
-    this.service.insertSystemData({
-      courseYear: 1,
-      courseTerm1: "1",
-      courseTerm2: "1"
-    }).then((result) => {
+  onUpdate(f: NgForm): void {
+    if (!f.valid) {
+      return this.alert.someting_wrong();
+    }
+    this.service.insertSystemData(f.value).then((result) => {
       this.alert.notify(result.message);
-      this.ngOnInit();
     }).catch((err) => {
       this.alert.notify(err.message);
     });

@@ -5,6 +5,7 @@ import { AlertService } from 'src/app/service/alert.service';
 import { CourseService } from 'src/app/service/course.service';
 import { SubjectService } from 'src/app/service/subject.service';
 import * as XLSX from 'xlsx';
+import { SystemService } from 'src/app/service/system.service';
 
 @Component({
   selector: 'app-add-course',
@@ -22,7 +23,8 @@ export class AddCourseComponent implements OnInit {
     private alert: AlertService,
     private service: CourseService,
     private subject: SubjectService,
-    private builder: FormBuilder) {
+    private builder: FormBuilder,
+    private system: SystemService) {
     this.initialForm();
   }
 
@@ -56,6 +58,8 @@ export class AddCourseComponent implements OnInit {
     if (this.form.invalid && this.listStudentId === null) {
       return this.alert.someting_wrong();
     }
+    this.form.value.year = this.system.systemData.year
+    this.form.value.term = this.system.systemData.term
     this.form.value.student = this.listStudentId;
     this.form.value.totalStudent = this.listStudentId.length
     this.service.addCourse(this.form.value).then((result) => {
@@ -88,8 +92,8 @@ export class AddCourseComponent implements OnInit {
       student: ['', [Validators.required]],
       totalStudent: ['', [Validators.required]],
       score: ['', [Validators.required]],
-      courseYear: ['', [Validators.required]],
-      courseTerm: ['', [Validators.required]]
+      year: ['', [Validators.required]],
+      term: ['', [Validators.required]]
     })
   }
   arrayBuffer: any;
@@ -98,7 +102,6 @@ export class AddCourseComponent implements OnInit {
 
   onFileChange(event) {
     const reader = new FileReader();
-
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
       reader.readAsArrayBuffer(file)
@@ -117,7 +120,6 @@ export class AddCourseComponent implements OnInit {
         listStudent.shift()
         this.listStudentId = listStudent.map(({ id }) => id)
       };
-
     }
   }
 

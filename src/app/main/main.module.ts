@@ -17,6 +17,7 @@ import { SettingComponent } from './components/setting/setting.component';
 import { ManagerPersonComponent } from './components/manager-person/manager-person.component';
 import { ManagerExaminationComponent } from './components/manager-examination/manager-examination.component';
 import { AddPersonComponent } from './components/manager-person/add-person/add-person.component';
+import { AddExaminationComponent } from './components/manager-examination/add-examination/add-examination.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { AddPersonComponent } from './components/manager-person/add-person/add-p
     SettingComponent,
     ManagerPersonComponent,
     ManagerExaminationComponent,
-    AddPersonComponent
+    AddPersonComponent,
+    AddExaminationComponent
   ],
   imports: [
     CommonModule,

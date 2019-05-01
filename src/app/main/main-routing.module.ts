@@ -10,6 +10,7 @@ import { ManagerRoomComponent } from './components/manager-room/manager-room.com
 import { SettingComponent } from './components/setting/setting.component';
 import { AddCourseComponent } from './components/manager-course/add-course/add-course.component';
 import { ManagerPersonComponent } from './components/manager-person/manager-person.component';
+import { ManagerExaminationComponent } from './components/manager-examination/manager-examination.component';
 
 const mainRouter: Routes = [
   { path: '', redirectTo: 'dashboard' },
@@ -20,6 +21,7 @@ const mainRouter: Routes = [
   { path: 'manager-building', component: ManagerBuildingComponent },
   { path: 'manager-room/:buildingId', component: ManagerRoomComponent },
   { path: 'manager-subject', component: ManagerSubjectComponent },
+  { path: 'manager-exam', component: ManagerExaminationComponent },
   { path: 'add-subject', component: AddSubjectComponent },
   { path: 'setting', component: SettingComponent }
 ];

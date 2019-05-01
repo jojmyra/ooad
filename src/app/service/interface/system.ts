@@ -1,16 +1,18 @@
+import { NgForm } from '@angular/forms';
+
 export interface System {
-    courseYear: Number;
-    courseTerm: Number;
+    year: Number;
+    term: Number;
 }
 
 export interface SystemInput {
-    courseYear: Number;
-    courseTerm1: String;
-    courseTerm2: String;
+    year: Number;
+    term1: String;
+    term2: String;
 }
 
 export interface SystemInterface {
     systemInfo: System;
     
-    onupdate(): void;
+    onUpdate(f: NgForm): void;
 }

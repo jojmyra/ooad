@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertService } from 'src/app/service/alert.service';
 import { PersonService } from 'src/app/service/person.service';
 import { AuthenticatorService } from 'src/app/authenticator.service';
+import { ILoginDetail } from 'src/app/service/interface/person.interface';
 declare let App;
 
 @Component({
@@ -12,7 +13,7 @@ declare let App;
 })
 export class SidebarComponent implements OnInit {
 
-  personLoginDetail
+  personLoginDetail: ILoginDetail
 
   constructor(private router: Router,
     private alert: AlertService,
