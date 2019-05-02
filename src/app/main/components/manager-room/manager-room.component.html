@@ -66,7 +66,8 @@
                   <th>ชื่อห้อง</th>
                   <th>ประเภทห้อง</th>
                   <th>ชั้น</th>
-                  <th>จำนวนที่นั่ง</th>
+                  <th>จำนวนที่แถว</th>
+                  <th>จำนวนที่นั่งทั้งหมด</th>
                   <th></th>
                 </tr>
               </thead>
@@ -76,7 +77,8 @@
                   <td>{{item.roomName}}</td>
                   <td>{{item.roomType}}</td>
                   <td>{{item.roomFloor}}</td>
-                  <td>{{item.roomSeat}}</td>
+                  <td>{{item.roomSeatRow}}</td>
+                  <td>{{item.roomSeatMax}}</td>
                   <td class="text-right">
                     <!-- <ng-template [ngIf]="UserLogin.role == Role.Admin"> -->
                     <i (click)="onUpdate(item)" class="fa fa-edit cur"></i>

@@ -93,6 +93,8 @@ export class ManagerRoomComponent implements OnInit, RoomInterface {
 
   private loadRooms(buildingId) {
     this.service.getRoomsByBuildingId(buildingId).then((result) => {
+      console.log(result);
+
       this.items = result
       this.service.setItemList(result)
     }).catch((err) => {
