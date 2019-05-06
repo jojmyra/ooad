@@ -1,0 +1,8 @@
+<i (click)="openModal(delete)" class="fa fa-trash cur"></i>
+<ng-template #delete>
+  <div class="modal-body text-center">
+    <p>คุณต้องการลบข้อมูลหรือไม่ ?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >ใช่</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >ไม่</button>
+  </div>
+</ng-template>
