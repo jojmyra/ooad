@@ -3,7 +3,7 @@
     <div>
       <h1>
         <i class="fa fa-users"></i> จัดการตึก</h1>
-      <p>หน้าแสดงรายการ สมาชิก ค้นหา และแก้ไข</p>
+      <!-- <p>หน้าแสดงรายการ สมาชิก ค้นหา และแก้ไข</p> -->
     </div>
     <ul class="app-breadcrumb breadcrumb">
       <li class="breadcrumb-item">
@@ -74,7 +74,7 @@
                 <tr *ngFor="let item of items.items">
                   <td>{{item.buildingId}}</td>
                   <td>{{item.buildingName}}</td>
-                  <td><button class="btn btn-outline-primary" (click)="openRoom(item.buildingId)">ดูจำนวนห้อง</button>
+                  <td><button class="btn btn-outline-primary" (click)="openRoom(item.buildingId)">จัดการห้อง</button>
                   </td>
                   <td class="text-right">
                     <!-- <ng-template [ngIf]="UserLogin.role == Role.Admin"> -->
