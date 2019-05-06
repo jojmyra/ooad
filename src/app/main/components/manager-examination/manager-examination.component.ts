@@ -3,6 +3,7 @@ import { SubjectInterface, ItemList, Search, SearchKey } from 'src/app/service/i
 import { PageChangedEvent } from 'ngx-bootstrap';
 import { SubjectService } from 'src/app/service/subject.service';
 import { AlertService } from 'src/app/service/alert.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-manager-examination',
   templateUrl: './manager-examination.component.html',
@@ -11,7 +12,8 @@ import { AlertService } from 'src/app/service/alert.service';
 export class ManagerExaminationComponent implements OnInit, SubjectInterface {
 
   constructor(private subject: SubjectService,
-    private alert: AlertService) {
+    private alert: AlertService,
+    private router: Router) {
     this.loadSubjects({
       startPage: this.startPage,
       limitPage: this.limitPage
@@ -102,4 +104,7 @@ export class ManagerExaminationComponent implements OnInit, SubjectInterface {
     this.items = this.subject.itemList
   }
 
+  openAdd() {
+    this.router.navigate(['/main/manager-exam/add'])
+  }
 }

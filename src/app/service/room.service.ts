@@ -41,4 +41,9 @@ export class RoomService {
     return this.http.requestPut(`api/room`, Room, this.authenticator.getAuthenticated())
     .toPromise() as Promise<any>
   }
+
+  getAllBuilding() {
+    return this.http.requestGet(`api/room/buildngList`, this.authenticator.getAuthenticated())
+    .toPromise() as Promise<any>
+  }
 }

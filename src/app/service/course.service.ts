@@ -36,4 +36,9 @@ export class CourseService {
     return this.http.requestPut(`api/course`, Course, this.authenticator.getAuthenticated())
     .toPromise() as Promise<any>
   }
+
+  getAllSubject() {
+    return this.http.requestGet(`api/course/subjectList`, this.authenticator.getAuthenticated())
+    .toPromise() as Promise<any>
+  }
 }
