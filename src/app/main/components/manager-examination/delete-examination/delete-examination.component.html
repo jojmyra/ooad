@@ -1,3 +1,8 @@
-<p>
-  delete-examination works!
-</p>
+<i (click)="openModal(delete)" class="fa fa-trash cur"></i>
+<ng-template #delete>
+  <div class="modal-body text-center">
+    <p>คุณต้องการลบข้อมูลหรือไม่ ?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >ยืนยัน</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >ยกเลิก</button>
+  </div>
+</ng-template>
