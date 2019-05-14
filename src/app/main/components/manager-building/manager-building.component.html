@@ -81,7 +81,7 @@
                     <i (click)="onUpdate(item)" class="fa fa-edit cur"></i>
                     <span> | </span>
                     <!-- </ng-template> -->
-                    <app-delete-building></app-delete-building>
+                    <app-delete-building [_id]="item._id"></app-delete-building>
                   </td>
                 </tr>
               </tbody>
