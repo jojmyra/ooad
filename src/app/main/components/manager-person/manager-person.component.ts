@@ -42,7 +42,11 @@ export class ManagerPersonComponent implements OnInit, PersonInterface {
   limitPage: number = 5;
 
   onPageChanged(page: PageChangedEvent) {
-    throw new Error("Method not implemented.");
+    this.startPage = page.page
+    this.loadPersons({
+      startPage: this.startPage,
+      limitPage: this.limitPage
+    })
   }
 
   getRoleName(role: string): string {
