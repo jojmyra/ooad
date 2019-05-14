@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { buildingInterface, Item, ItemList, Search, SearchKey } from 'src/app/service/interface/building.interface';
 import { AlertService } from 'src/app/service/alert.service';
 import { BuildingService } from 'src/app/service/building.service';
-import { PageChangedEvent } from 'ngx-bootstrap';
-import { Router } from '@angular/router';
+import { PageChangedEvent, BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-manager-building',
@@ -12,18 +13,20 @@ import { Router } from '@angular/router';
 })
 export class ManagerBuildingComponent implements OnInit, buildingInterface {
 
+  modalRef: BsModalRef;
+  form: FormGroup
+  
   constructor(private service: BuildingService,
     private alert: AlertService,
-    private route: Router) {
-    this.loadSubjects({
-      startPage: this.startPage,
-      limitPage: this.limitPage
-    })
+    private route: Router,
+    private modalService: BsModalService,
+    private builder: FormBuilder) {
     this.serachType = this.searchTypeItems[0];
+    this.initialForm();
   }
 
   ngOnInit() {
-    this.loadSubjects({
+    this.loadBuildings({
       startPage: this.startPage,
       limitPage: this.limitPage
     })
@@ -46,23 +49,51 @@ export class ManagerBuildingComponent implements OnInit, buildingInterface {
 
   onPageChanged(page: PageChangedEvent) {
     console.log(page);
-    
   }
 
   getRoleName(role: string): string {
     throw new Error("Method not implemented.");
   }
+  
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
 
-  onDelete(id: string) {
-    this.service.deleteBuilding(id).then(() => {      
-      this.loadSubjects({
+  initialForm() {
+    this.form = this.builder.group({
+      buildingId: ['', [Validators.required]],
+      buildingName: ['', [Validators.required]]
+    })
+  }
+
+  onAdd(): void {
+    if (this.form.invalid) {
+      return this.alert.someting_wrong();
+    }
+    this.service.addBuilding(this.form.value).then((result) => {
+      this.alert.notify(result.message, 'info')
+      this.loadBuildings({
         startPage: this.startPage,
         limitPage: this.limitPage
       })
+    }).catch((err) => {
+      this.alert.notify(err.message)
+    });
+    this.initialForm();
+    this.modalRef.hide();
+  }
+
+  onDelete(id: string) {
+    this.service.deleteBuilding(id).then(() => {      
       this.alert.notify('ลบข้อมูลสำเร็จ', 'info');
+      this.loadBuildings({
+        startPage: this.startPage,
+        limitPage: this.limitPage
+      })
     }).catch((err) => {
       this.alert.notify(err.Message)
     });
+    this.modalRef.hide();
   }
 
   onUpdate(_id: string): void {
@@ -97,7 +128,7 @@ export class ManagerBuildingComponent implements OnInit, buildingInterface {
     return responseSearchText;
   }
 
-  private loadSubjects(options?: Search) {
+  private loadBuildings(options?: Search) {
     this.service.getBuildings(options).then((result) => {
       this.items = result
       this.service.setItemList(result)

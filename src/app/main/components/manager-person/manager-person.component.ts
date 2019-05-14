@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonInterface, ItemList, Search, SearchKey } from 'src/app/service/interface/person.interface';
-import { PageChangedEvent } from 'ngx-bootstrap';
 import { PersonService } from 'src/app/service/person.service';
 import { AlertService } from 'src/app/service/alert.service';
+import { PageChangedEvent, BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-manager-person',
   templateUrl: './manager-person.component.html',
@@ -10,8 +11,13 @@ import { AlertService } from 'src/app/service/alert.service';
 })
 export class ManagerPersonComponent implements OnInit, PersonInterface {
 
+  modalRef: BsModalRef;
+  form: FormGroup
+
   constructor(private person: PersonService,
-    private alert: AlertService) {
+    private alert: AlertService,
+    private modalService: BsModalService,
+    private builder: FormBuilder) {
     this.loadPersons({
       startPage: this.startPage,
       limitPage: this.limitPage

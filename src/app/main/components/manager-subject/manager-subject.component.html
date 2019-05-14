@@ -80,7 +80,15 @@
                     <i (click)="onUpdate(item)" class="fa fa-edit cur"></i>
                     <span> | </span>
                     <!-- </ng-template> -->
-                    <app-delete-subject></app-delete-subject>
+                    <i (click)="openModal(delete)" class="fa fa-trash cur"></i>
+                    <ng-template #delete>
+                      <div class="modal-body text-center">
+                        <p>คุณต้องการลบข้อมูลหรือไม่ ?</p>
+                        <button type="button" class="btn btn-default" (click)="onDelete(item._id)">ยืนยัน</button>
+                        <button type="button" class="btn btn-primary" (click)="modalRef.hide()">ยกเลิก</button>
+                      </div>
+                    </ng-template>
+
                   </td>
                 </tr>
               </tbody>

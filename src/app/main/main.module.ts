@@ -19,17 +19,11 @@ import { ManagerExaminationComponent } from './components/manager-examination/ma
 import { AddPersonComponent } from './components/manager-person/add-person/add-person.component';
 import { AddExaminationComponent } from './components/manager-examination/add-examination/add-examination.component';
 import { EditBuildingComponent } from './components/manager-building/edit-building/edit-building.component';
-import { DeleteBuildingComponent } from './components/manager-building/delete-building/delete-building.component';
 import { EditCourseComponent } from './components/manager-course/edit-course/edit-course.component';
-import { DeleteCourseComponent } from './components/manager-course/delete-course/delete-course.component';
-import { DeleteExaminationComponent } from './components/manager-examination/delete-examination/delete-examination.component';
 import { EditExaminationComponent } from './components/manager-examination/edit-examination/edit-examination.component';
 import { EditPersonComponent } from './components/manager-person/edit-person/edit-person.component';
-import { DeletePersonComponent } from './components/manager-person/delete-person/delete-person.component';
 import { EditRoomComponent } from './components/manager-room/edit-room/edit-room.component';
-import { DeleteRoomComponent } from './components/manager-room/delete-room/delete-room.component';
 import { EditSubjectComponent } from './components/manager-subject/edit-subject/edit-subject.component';
-import { DeleteSubjectComponent } from './components/manager-subject/delete-subject/delete-subject.component';
 
 
 @NgModule({
@@ -49,17 +43,11 @@ import { DeleteSubjectComponent } from './components/manager-subject/delete-subj
     AddPersonComponent,
     AddExaminationComponent,
     EditBuildingComponent,
-    DeleteBuildingComponent,
     EditCourseComponent,
-    DeleteCourseComponent,
-    DeleteExaminationComponent,
     EditExaminationComponent,
     EditPersonComponent,
-    DeletePersonComponent,
     EditRoomComponent,
-    DeleteRoomComponent,
     EditSubjectComponent,
-    DeleteSubjectComponent
   ],
   imports: [
     CommonModule,

@@ -1,10 +1,10 @@
 <div class="input-group-append">
-  <button (click)="openModal(template)" class="btn btn-primary" type="button">
+  <button (click)="openAddModal(addTemplate)" class="btn btn-primary" type="button">
     <i class="fa fa-plus-circle"></i>
   </button>
 </div>
 
-<ng-template #template>
+<ng-template #addTemplate>
   <form [formGroup]="form" (submit)="onSubmit()">
     <div class="modal-header">
       <h4 class="modal-title pull-left">เพิ่มตึก</h4>

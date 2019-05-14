@@ -1,22 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RoomInterface, ItemList, Search, SearchKey } from 'src/app/service/interface/room.interface';
-import { PageChangedEvent } from 'ngx-bootstrap';
 import { RoomService } from 'src/app/service/room.service';
 import { AlertService } from 'src/app/service/alert.service';
-
+import { PageChangedEvent, BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-manager-room',
   templateUrl: './manager-room.component.html',
   styleUrls: ['./manager-room.component.sass']
 })
 export class ManagerRoomComponent implements OnInit, RoomInterface {
+
+  modalRef: BsModalRef;
+  form: FormGroup
   subscribeBuildingParam: string;
 
   constructor(private service: RoomService,
     private alert: AlertService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private modalService: BsModalService,
+    private builder: FormBuilder) {
     this.serachType = this.searchTypeItems[0];
   }
 

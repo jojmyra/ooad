@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SubjectInterface, ItemList, Search, SearchKey } from 'src/app/service/interface/subject.interface';
-import { PageChangedEvent } from 'ngx-bootstrap';
 import { SubjectService } from 'src/app/service/subject.service';
 import { AlertService } from 'src/app/service/alert.service';
-
+import { PageChangedEvent, BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-manager-subject',
   templateUrl: './manager-subject.component.html',
@@ -11,8 +11,13 @@ import { AlertService } from 'src/app/service/alert.service';
 })
 export class ManagerSubjectComponent implements OnInit, SubjectInterface {
 
+  modalRef: BsModalRef;
+  form: FormGroup
+
   constructor(private subject: SubjectService,
-    private alert: AlertService) {
+    private alert: AlertService,
+    private modalService: BsModalService,
+    private builder: FormBuilder) {
     this.loadSubjects({
       startPage: this.startPage,
       limitPage: this.limitPage

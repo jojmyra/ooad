@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { CourseInterface, ItemList, Search, SearchKey } from 'src/app/service/interface/course.interface';
-import { PageChangedEvent } from 'ngx-bootstrap';
 import { CourseService } from 'src/app/service/course.service';
 import { AlertService } from 'src/app/service/alert.service';
+import { PageChangedEvent, BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-manager-course',
   templateUrl: './manager-course.component.html',
@@ -10,8 +11,13 @@ import { AlertService } from 'src/app/service/alert.service';
 })
 export class ManagerCourseComponent implements OnInit {
 
+  modalRef: BsModalRef;
+  form: FormGroup
+
   constructor(private service: CourseService,
-    private alert: AlertService) {
+    private alert: AlertService,
+    private modalService: BsModalService,
+    private builder: FormBuilder) {
     this.loadCourses({
       startPage: this.startPage,
       limitPage: this.limitPage
@@ -48,9 +54,14 @@ export class ManagerCourseComponent implements OnInit {
   getRoleName(role: string): string {
     throw new Error("Method not implemented.");
   }
+  
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
 
   onDelete(id: string) {
-    this.service.deleteCourse(id).then((result) => {      
+    this.service.deleteCourse(id).then((result) => {
+      this.alert.notify(result.message)
       this.loadCourses({
         startPage: this.startPage,
         limitPage: this.limitPage
