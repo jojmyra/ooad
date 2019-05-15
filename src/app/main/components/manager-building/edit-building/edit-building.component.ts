@@ -20,7 +20,6 @@ export class EditBuildingComponent implements OnInit {
     private alert: AlertService,
     private service: BuildingService,
     private builder: FormBuilder) {
-    this.initialForm();
   }
 
   ngOnInit(): void {
@@ -29,6 +28,7 @@ export class EditBuildingComponent implements OnInit {
   openModal(template: TemplateRef<any>) {
     this.initialForm();
     this.form.setValue({
+      _id: this.item._id,
       buildingId: this.item.buildingId,
       buildingName: this.item.buildingName
     })
@@ -39,7 +39,7 @@ export class EditBuildingComponent implements OnInit {
     if (this.form.invalid) {
       return this.alert.someting_wrong();
     }
-    this.service.addBuilding(this.form.value).then((result) => {
+    this.service.editBuilding(this.form.value).then((result) => {
       this.alert.notify(result.message, 'info')
       this.service.getBuildings({
         startPage: 1,
@@ -52,7 +52,6 @@ export class EditBuildingComponent implements OnInit {
     }).catch((err) => {
       this.alert.notify(err.message)
     });
-    this.initialForm();
     this.modalRef.hide();
   }
 
@@ -62,6 +61,7 @@ export class EditBuildingComponent implements OnInit {
 
   initialForm() {
     this.form = this.builder.group({
+      _id: '',
       buildingId: [''],
       buildingName: ['', [Validators.required]]
     })

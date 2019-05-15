@@ -27,6 +27,7 @@ export class EditSubjectComponent implements OnInit {
   openModal(template: TemplateRef<any>) {
     this.initialForm();
     this.form.setValue({
+      _id: this.item._id,
       subjectId: this.item.subjectId,
       subjectName: this.item.subjectName
     })
@@ -37,6 +38,19 @@ export class EditSubjectComponent implements OnInit {
     if (this.form.invalid) {
       return this.alert.someting_wrong();
     }
+    this.service.editSubject(this.form.value).then((result) => {
+      this.alert.notify(result.message, 'info')
+      this.service.getSubjects({
+        startPage: 1,
+        limitPage: 5
+      }).then((list) => {
+        this.service.setItemList(list)
+      }).catch((err) => {
+        this.alert.notify(err.message)
+      });
+    }).catch((err) => {
+      this.alert.notify(err.message)
+    });
     this.modalRef.hide();
   }
 
@@ -46,6 +60,7 @@ export class EditSubjectComponent implements OnInit {
 
   initialForm() {
     this.form = this.builder.group({
+      _id: '',
       subjectId: ['', [Validators.required]],
       subjectName: ['', [Validators.required]]
     })

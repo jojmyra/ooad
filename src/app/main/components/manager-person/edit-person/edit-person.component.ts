@@ -28,6 +28,7 @@ export class EditPersonComponent implements OnInit {
   openModal(template: TemplateRef<any>) {
     this.initialForm();
     this.form.setValue({
+      _id: this.item._id,
       username: this.item.username,
       password: this.item.password,
       firstname: this.item.firstname,
@@ -42,7 +43,7 @@ export class EditPersonComponent implements OnInit {
     if (this.form.invalid) {
       return this.alert.someting_wrong();
     }
-    this.service.addPerson(this.form.value).then((result) => {
+    this.service.editPerson(this.form.value).then((result) => {
       this.alert.notify(result.message, 'info')
       this.service.getPersons({
         startPage: 1,
@@ -65,6 +66,7 @@ export class EditPersonComponent implements OnInit {
 
   initialForm() {
     this.form = this.builder.group({
+      _id: '',
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
       firstname: ['', [Validators.required]],

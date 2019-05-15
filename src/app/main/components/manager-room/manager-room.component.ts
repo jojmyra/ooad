@@ -26,7 +26,6 @@ export class ManagerRoomComponent implements OnInit, RoomInterface {
   }
 
   ngOnInit() {
-    this.items = null
     this.route.paramMap.subscribe(params => {
       this.subscribeBuildingParam = params.get("buildingId");
     });
@@ -62,10 +61,7 @@ export class ManagerRoomComponent implements OnInit, RoomInterface {
 
   onDelete(id: string) {
     this.service.deleteRoom(id).then((result) => {
-      this.loadRooms({
-        startPage: this.startPage,
-        limitPage: this.limitPage
-      })
+      this.loadRooms({ buildingId: this.subscribeBuildingParam })
       this.alert.notify('ลบข้อมูลสำเร็จ', 'info');
     }).catch((err) => {
       this.alert.notify(err.Message)
@@ -103,8 +99,6 @@ export class ManagerRoomComponent implements OnInit, RoomInterface {
 
   private loadRooms(buildingId) {
     this.service.getRoomsByBuildingId(buildingId).then((result) => {
-      console.log(result);
-
       this.items = result
       this.service.setItemList(result)
     }).catch((err) => {
