@@ -25,7 +25,7 @@
           <!-- ค้นหา -->
           <div class="form-group">
             <div class="input-group">
-              <div class="input-group-prepend" dropdown>
+              <!-- <div class="input-group-prepend" dropdown>
                 <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
                   aria-controls="dropdown-basic">
                   {{ serachType.value }}
@@ -45,13 +45,13 @@
                   class="form-control" placeholder="ค้นหาข้อมูล">
                 <input *ngSwitchDefault type="text" [(ngModel)]="searchText" class="form-control"
                   placeholder="ค้นหาข้อมูล">
-              </div>
+              </div> -->
 
-              <div class="input-group-append" style="margin-right: 5px;">
+              <!-- <div class="input-group-append" style="margin-right: 5px;">
                 <button (click)="onSearchItem()" class="btn btn-primary" type="button">
                   <i class="fa fa-search"></i>
                 </button>
-              </div>
+              </div> -->
               <app-add-person></app-add-person>
             </div>
           </div>
@@ -59,7 +59,7 @@
         </div>
         <div class="tile-body" *ngIf="items">
           <div class="table-responsive">
-            <table class="table">
+            <table datatable class="table">
               <!-- Head -->
               <thead>
                 <tr>
@@ -98,15 +98,15 @@
               <!-- Foot -->
               <tfoot>
                 <tr>
-                  <th colspan="7">
+                  <!-- <th colspan="7">
                     จำนวนบุคลากรทั้งหมด {{ items.totalItems }} คน
-                  </th>
+                  </th> -->
                 </tr>
               </tfoot>
             </table>
-            <pagination [(ngModel)]="startPage" [itemsPerPage]="limitPage" (pageChanged)="onPageChanged($event)"
+            <!-- <pagination [(ngModel)]="startPage" [itemsPerPage]="limitPage" (pageChanged)="onPageChanged($event)"
               [rotate]="false" [maxSize]="10" previousText="หน้าก่อนหน้า" nextText="หน้าถัดไป"
-              [totalItems]="items.totalItems"></pagination>
+              [totalItems]="items.totalItems"></pagination> -->
           </div>
         </div>
       </div>

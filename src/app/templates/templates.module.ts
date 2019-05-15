@@ -12,6 +12,7 @@ import { PersonService } from '../service/person.service';
 import { AlertService } from '../service/alert.service';
 import { AuthenticatorService } from '../authenticator.service';
 import { HttpService } from '../http.service';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HttpService } from '../http.service';
     BsDatepickerModule,
     TypeaheadModule,
     AngularFontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    DataTablesModule
   ],
   imports: [
     CommonModule,
@@ -44,7 +46,8 @@ import { HttpService } from '../http.service';
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(),
+    DataTablesModule
   ],
   providers: [
     HttpService,
