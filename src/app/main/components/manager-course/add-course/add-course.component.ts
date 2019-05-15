@@ -54,7 +54,7 @@ export class AddCourseComponent implements OnInit {
 
   }
 
-  onSubmit(): void {    
+  onSubmit(): void {
     if (this.form.invalid && this.listStudentId === null) {
       return this.alert.someting_wrong();
     }
@@ -96,6 +96,7 @@ export class AddCourseComponent implements OnInit {
       term: ['', [Validators.required]]
     })
   }
+  
   arrayBuffer: any;
   file: File;
   listStudentId: any = null;

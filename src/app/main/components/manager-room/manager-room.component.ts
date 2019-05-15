@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RoomInterface, ItemList, Search, SearchKey } from 'src/app/service/interface/room.interface';
 import { RoomService } from 'src/app/service/room.service';
@@ -56,6 +56,10 @@ export class ManagerRoomComponent implements OnInit, RoomInterface {
     throw new Error("Method not implemented.");
   }
 
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
   onDelete(id: string) {
     this.service.deleteRoom(id).then((result) => {
       this.loadRooms({
@@ -66,6 +70,7 @@ export class ManagerRoomComponent implements OnInit, RoomInterface {
     }).catch((err) => {
       this.alert.notify(err.Message)
     });
+    this.modalRef.hide();
   }
 
   onUpdate(_id: string): void {

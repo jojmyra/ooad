@@ -112,7 +112,8 @@
                   </td>
                   <td class="text-right">
                     <!-- <ng-template [ngIf]="UserLogin.role == Role.Admin"> -->
-                    <i (click)="onUpdate(item)" class="fa fa-edit cur"></i>
+                    <!-- <i (click)="onUpdate(item)" class="fa fa-edit cur"></i> -->
+                    <app-edit-building [item]="item"></app-edit-building>
                     <span> | </span>
                     <!-- </ng-template> -->
                     <i (click)="openModal(deleteTemplate)" class="fa fa-trash cur"></i>

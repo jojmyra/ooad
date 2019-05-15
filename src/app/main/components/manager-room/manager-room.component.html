@@ -81,7 +81,8 @@
                   <td>{{item.roomSeatMax}}</td>
                   <td class="text-right">
                     <!-- <ng-template [ngIf]="UserLogin.role == Role.Admin"> -->
-                    <i (click)="onUpdate(item)" class="fa fa-edit cur"></i>
+                    <!-- <i (click)="onUpdate(item)" class="fa fa-edit cur"></i> -->
+                    <app-edit-room [item]="item"></app-edit-room>
                     <span> | </span>
                     <!-- </ng-template> -->
                     <i (click)="openModal(delete)" class="fa fa-trash cur"></i>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { PersonInterface, ItemList, Search, SearchKey } from 'src/app/service/interface/person.interface';
 import { PersonService } from 'src/app/service/person.service';
 import { AlertService } from 'src/app/service/alert.service';
@@ -59,16 +59,21 @@ export class ManagerPersonComponent implements OnInit, PersonInterface {
     throw new Error("Method not implemented.");
   }
 
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
   onDelete(id: string) {
     this.person.deletePerson(id).then((result) => {      
       this.loadPersons({
         startPage: this.startPage,
         limitPage: this.limitPage
       })
-      this.alert.notify('ลบข้อมูลสำเร็จ', 'info');
+      this.alert.notify(result.message, 'info')
     }).catch((err) => {
       this.alert.notify(err.Message)
     });
+    this.modalRef.hide();
   }
 
   onUpdate(_id: string): void {

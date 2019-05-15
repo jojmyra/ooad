@@ -9,17 +9,41 @@
       </button>
     </div>
     <div class="modal-body">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">ชื่อย่อ</span>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">ประเภท</label>
+        <div class="col-sm-10">
+          <select class="custom-select my-1 mr-sm-2" id="status" formControlName="status" disabled>
+            <option selected value="">กรุณาเลือก...</option>
+            <option value="นิสิต">นิสิต</option>
+            <option value="อาจารย์">อาจารย์</option>
+            <option value="เจ้าหน้าที่">เจ้าหน้าที่</option>
+          </select>
         </div>
-        <input type="text" class="form-control" formControlName="buildingId">
       </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">ชื่อตึก</span>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Username</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="username" placeholder="กรุณากรอกข้อมูล" disabled>
         </div>
-        <input type="text" class="form-control" formControlName="buildingName">
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">firstname</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="firstname" placeholder="กรุณากรอกข้อมูล">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">lastname</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="lastname" placeholder="กรุณากรอกข้อมูล">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">email</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="email"
+            placeholder="กรุณากรอกข้อมูล">
+        </div>
       </div>
     </div>
     <div class="modal-footer">

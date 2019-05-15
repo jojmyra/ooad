@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { SubjectInterface, ItemList, Search, SearchKey } from 'src/app/service/interface/subject.interface';
 import { SubjectService } from 'src/app/service/subject.service';
 import { AlertService } from 'src/app/service/alert.service';
@@ -57,16 +57,21 @@ export class ManagerExaminationComponent implements OnInit, SubjectInterface {
     throw new Error("Method not implemented.");
   }
 
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
   onDelete(id: string) {
     this.subject.deleteSubject(id).then((result) => {      
       this.loadSubjects({
         startPage: this.startPage,
         limitPage: this.limitPage
       })
-      this.alert.notify('ลบข้อมูลสำเร็จ', 'info');
+      this.alert.notify(result.message, 'info')
     }).catch((err) => {
       this.alert.notify(err.Message)
     });
+    this.modalRef.hide();
   }
 
   onUpdate(_id: string): void {

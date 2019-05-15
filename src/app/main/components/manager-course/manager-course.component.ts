@@ -10,10 +10,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./manager-course.component.sass']
 })
 export class ManagerCourseComponent implements OnInit {
-
-  modalRef: BsModalRef;
-  form: FormGroup
-
   constructor(private service: CourseService,
     private alert: AlertService,
     private modalService: BsModalService,
@@ -55,13 +51,14 @@ export class ManagerCourseComponent implements OnInit {
     throw new Error("Method not implemented.");
   }
   
+  modalRef: BsModalRef;
+  form: FormGroup
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
   onDelete(id: string) {
     this.service.deleteCourse(id).then((result) => {
-      this.alert.notify(result.message)
       this.loadCourses({
         startPage: this.startPage,
         limitPage: this.limitPage
@@ -70,6 +67,7 @@ export class ManagerCourseComponent implements OnInit {
     }).catch((err) => {
       this.alert.notify(err.Message)
     });
+    this.modalRef.hide();
   }
 
   onUpdate(_id: string): void {

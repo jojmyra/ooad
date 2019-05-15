@@ -79,7 +79,8 @@
                   <td>{{item.email}}</td>
                   <td class="text-right">
                     <!-- <ng-template [ngIf]="UserLogin.role == Role.Admin"> -->
-                    <i (click)="onUpdate(item)" class="fa fa-edit cur"></i>
+                    <!-- <i (click)="onUpdate(item)" class="fa fa-edit cur"></i> -->
+                    <app-edit-person [item]="item"></app-edit-person>
                     <span> | </span>
                     <!-- </ng-template> -->
                     <i (click)="openModal(delete)" class="fa fa-trash cur"></i>
