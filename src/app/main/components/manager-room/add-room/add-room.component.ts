@@ -61,11 +61,11 @@ export class AddRoomComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.form.value.roomSeat = this.getRoomSeat()
-    this.form.value.buildingId = this.buildingId
     if (this.form.invalid) {
       return this.alert.someting_wrong();
     }
+    this.form.value.roomSeat = this.getRoomSeat()
+    this.form.value.buildingId = this.buildingId
     this.service.addRoom(this.form.value).then((result) => {
       this.alert.notify(result.message, 'info')
       this.service.getRoomsByBuildingId({ buildingId: this.buildingId }).then((list) => {
