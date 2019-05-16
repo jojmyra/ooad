@@ -80,7 +80,11 @@
                   <td>{{item.courseSeat}}</td>
                   <td>
                     <ng-container *ngIf="item.professor.length > 0; else professorTemplate">
-                      {{item.professor}}
+                      <ng-container *ngFor="let professor of item.professor">
+                        {{professor.fullName}}
+                      </ng-container>
+                      
+                      <!-- {{item.professor}} -->
                     </ng-container>
                     <ng-template #professorTemplate>
                       ยังไม่เลือกผู้สอน

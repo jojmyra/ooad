@@ -21,9 +21,8 @@ export class AddCourseComponent implements OnInit {
   subjectList: any[];
   subjectName: string;
 
-  professorList: any[];
-  professor: any;
-  professorNameList: Array<String>;
+  professor: any[] = new Array();
+  professorList: any;
 
   constructor(private modalService: BsModalService,
     private alert: AlertService,
@@ -32,7 +31,7 @@ export class AddCourseComponent implements OnInit {
     private builder: FormBuilder,
     private person: PersonService,
     private system: SystemService) {
-    this.initialForm();
+    this.loadProfessor();
   }
 
   ngOnInit(): void {
@@ -41,11 +40,6 @@ export class AddCourseComponent implements OnInit {
 
   typeaheadOnSelect(e: TypeaheadMatch): void {
     this.subjectName = e.item.subjectName;
-  }
-
-  selectProfessor(e: TypeaheadMatch): void {
-    this.professor = e.item
-    console.log(this.professor)
   }
 
   openModal(template: TemplateRef<any>) {
@@ -64,23 +58,30 @@ export class AddCourseComponent implements OnInit {
       console.log(this.subjectList);
       
     })
+    this.loadProfessor()
+  }
+
+  private loadProfessor() {
     this.person.getProfessor().then((result) => {
-      this.person.setItemList(result);
+      this.professorList = result
     }).catch((err) => {
       this.alert.notify(err)
-    }).finally(() => {
-      this.professorList = this.person.itemList.items
-      console.log(this.professorList);
-      
     })
-
-
   }
 
   onSubmit(): void {
-    if (this.form.invalid && this.listStudentId === null) {
+    if (this.form.invalid) {
       return this.alert.someting_wrong();
     }
+    if (!this.listStudentId) {
+      console.log("listStudentId");
+      return this.alert.someting_wrong();
+    }
+    if (!this.professor) {
+      console.log("professor");
+      return this.alert.someting_wrong();
+    }
+    this.form.value.professor = this.professor
     this.form.value.subjectName = this.subjectName
     this.form.value.year = this.system.systemData.year
     this.form.value.term = this.system.systemData.term
@@ -113,12 +114,12 @@ export class AddCourseComponent implements OnInit {
       subjectName: [''],
       courseGroup: ['', [Validators.required]],
       courseSeat: ['', [Validators.required]],
-      professor: ['', [Validators.required]],
-      student: ['', [Validators.required]],
-      totalStudent: ['', [Validators.required]],
-      score: ['', [Validators.required]],
-      year: ['', [Validators.required]],
-      term: ['', [Validators.required]]
+      professor: [''],
+      student: [''],
+      totalStudent: [''],
+      score: [''],
+      year: [''],
+      term: ['']
     })
   }
 
@@ -149,28 +150,12 @@ export class AddCourseComponent implements OnInit {
     }
   }
 
-  private value: any = ['Athens'];
-  private _disabledV: string = '0';
-  private disabled: boolean = false;
-
-  private get disabledV(): string {
-    return this._disabledV;
-  }
-
-  private set disabledV(value: string) {
-    this._disabledV = value;
-    this.disabled = this._disabledV === '1';
-  }
-
   public selected(value: any): void {
-    console.log('Selected value is: ', value);
+    this.professor.push(value)
   }
 
   public removed(value: any): void {
-    console.log('Removed value is: ', value);
+    delete this.professor[value.index]
   }
 
-  public refreshValue(value: any): void {
-    this.value = value;
-  }
 }

@@ -77,7 +77,7 @@ export class ManagerBuildingComponent implements OnInit, buildingInterface {
         limitPage: this.limitPage
       })
     }).catch((err) => {
-      this.alert.notify(err.message)
+      this.alert.someting_wrong()
     });
     this.initialForm();
     this.modalRef.hide();
