@@ -1,26 +1,26 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { SubjectInterface, ItemList, Search, SearchKey } from 'src/app/service/interface/subject.interface';
-import { SubjectService } from 'src/app/service/subject.service';
+import { ExamInterface, ItemList, Search, SearchKey } from 'src/app/service/interface/exam-interface';
 import { AlertService } from 'src/app/service/alert.service';
 import { Router } from '@angular/router';
 import { PageChangedEvent, BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ExamService } from 'src/app/service/exam.service';
 @Component({
   selector: 'app-manager-examination',
   templateUrl: './manager-examination.component.html',
   styleUrls: ['./manager-examination.component.sass']
 })
-export class ManagerExaminationComponent implements OnInit, SubjectInterface {
+export class ManagerExaminationComponent implements OnInit, ExamInterface {
 
   modalRef: BsModalRef;
   form: FormGroup
 
-  constructor(private subject: SubjectService,
+  constructor(private service: ExamService,
     private alert: AlertService,
     private router: Router,
     private modalService: BsModalService,
     private builder: FormBuilder) {
-    this.loadSubjects({
+    this.loadExams({
       startPage: this.startPage,
       limitPage: this.limitPage
     })
@@ -28,7 +28,7 @@ export class ManagerExaminationComponent implements OnInit, SubjectInterface {
   }
 
   ngOnInit() {
-    this.loadSubjects({
+    this.loadExams({
       startPage: this.startPage,
       limitPage: this.limitPage
     })
@@ -38,8 +38,8 @@ export class ManagerExaminationComponent implements OnInit, SubjectInterface {
   searchText: string;
   serachType: SearchKey;
   searchTypeItems: SearchKey[] = [
-    { key: 'subjectId', value: 'ค้นหาจากรหัสวิชา' },
-    { key: 'subjectName', value: 'ค้นหาจากชื่อวิชา' }
+    { key: 'serviceId', value: 'ค้นหาจากรหัสวิชา' },
+    { key: 'serviceName', value: 'ค้นหาจากชื่อวิชา' }
   ];
 
   onSearchItem(): void {
@@ -62,8 +62,8 @@ export class ManagerExaminationComponent implements OnInit, SubjectInterface {
   }
 
   onDelete(id: string) {
-    this.subject.deleteSubject(id).then((result) => {      
-      this.loadSubjects({
+    this.service.deleteExam(id).then((result) => {      
+      this.loadExams({
         startPage: this.startPage,
         limitPage: this.limitPage
       })
@@ -74,8 +74,8 @@ export class ManagerExaminationComponent implements OnInit, SubjectInterface {
     this.modalRef.hide();
   }
 
-  onUpdate(_id: string): void {
-    throw new Error("Method not implemented.");
+  onUpdate(item): void {
+    this.router.navigate(['/main/manager-exam/edit'], item)
   }
 
   // ตรวจสอบและ return ค่า searchText
@@ -102,17 +102,17 @@ export class ManagerExaminationComponent implements OnInit, SubjectInterface {
     return responseSearchText;
   }
 
-  private loadSubjects(options?: Search) {
-    this.subject.getSubjects(options).then((result) => {
+  private loadExams(options?: Search) {
+    this.service.getExams(options).then((result) => {
       this.items = result
-      this.subject.setItemList(result)
+      this.service.setItemList(result)
     }).catch((err) => {
       this.alert.notify(err.message)
     });
   }
 
   ngDoCheck(): void {
-    this.items = this.subject.itemList
+    this.items = this.service.itemList
   }
 
   openAdd() {

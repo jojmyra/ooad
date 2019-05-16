@@ -37,21 +37,26 @@ export class PersonService {
 
   getPersons(options?: Search) {
     return this.http.requestGet(`api/person?${$.param(options)}`, this.authenticator.getAuthenticated())
-    .toPromise() as Promise<ItemList>
+      .toPromise() as Promise<ItemList>
+  }
+
+  getProfessor() {
+    return this.http.requestGet(`api/person/professor`, this.authenticator.getAuthenticated())
+      .toPromise() as Promise<ItemList>
   }
 
   addPerson(person: Item) {
     return this.http.requestPost(`api/person`, person, this.authenticator.getAuthenticated())
-    .toPromise() as Promise<any>
+      .toPromise() as Promise<any>
   }
 
   editPerson(person: Item) {
     return this.http.requestPut(`api/person`, person, this.authenticator.getAuthenticated())
-    .toPromise() as Promise<any>
+      .toPromise() as Promise<any>
   }
 
   deletePerson(_id: any) {
     return this.http.requestDelete(`api/person/${_id}`, this.authenticator.getAuthenticated())
-    .toPromise() as Promise<any>
+      .toPromise() as Promise<any>
   }
 }

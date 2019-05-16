@@ -1,30 +1,83 @@
-<i (click)="openModal(edit)" class="fa fa-edit cur"></i>
-
-<ng-template #edit>
-  <form [formGroup]="form" (submit)="onSubmit()">
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">แก้ไขการสอบ</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">ชื่อย่อ</span>
-        </div>
-        <input type="text" class="form-control" formControlName="buildingId">
+<app-content>
+    <div class="app-title">
+      <div>
+        <h1>
+          <i class="fa fa-cog"></i> เพิ่มการสอบ</h1>
       </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">ชื่อตึก</span>
+      <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item">
+          <i class="fa fa-home fa-lg"></i>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="#">เพิ่มการสอบ</a>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tile">
+          <div class="col-md-12">
+            <div class="tile-body">
+              <form [formGroup]="form" (submit)="onEdit()">
+                <div class="form-group row">
+                  <label for="year" class="col-sm-2 col-form-label">รหัสวิชา</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" autocomplete="off" formControlName="subjectId" type="text">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="year" class="col-sm-2 col-form-label">กลุ่มเรียน</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" autocomplete="off" formControlName="courseGroup" type="text"
+                       disabled>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="year" class="col-sm-2 col-form-label">ตึก</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" autocomplete="off" formControlName="buildingId" type="text"
+                      placeholder="กรุณาใส่ข้อมูล" >
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="year" class="col-sm-2 col-form-label">ห้อง</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" autocomplete="off" formControlName="roomName" type="text"
+                      placeholder="กรุณาใส่ข้อมูล" >
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="year" class="col-sm-2 col-form-label">ผู้คุม</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" formControlName="observer" type="text" placeholder="กรุณาใส่ข้อมูล" >
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="year" class="col-sm-2 col-form-label">วันที่สอบ</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" autocomplete="off" #drp="bsDatepicker" formControlName="examDate" bsDatepicker
+                    >
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="year" class="col-sm-2 col-form-label">ช่วงเวลาสอบ</label>
+                  <div class="col-sm-5">
+                    <input class="form-control" formControlName="timeStart" type="time" >
+                  </div>
+                  <div class="col-sm-5">
+                    <input class="form-control" formControlName="timeEnd" type="time" >
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-12 right">
+                    <button type="submit" class="btn btn-primary">ตกลง</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        <input type="text" class="form-control" formControlName="buildingName">
       </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal" type="reset" (click)="modalRef.hide()">ยกเลิก</button>
-      <button type="submit" class="btn btn-primary" type="submit">ยืนยัน</button>
-    </div>
-  </form>
-</ng-template>
+  </app-content>
+  

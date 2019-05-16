@@ -1,9 +1,13 @@
 import { PageChangedEvent } from 'ngx-bootstrap';
 
 export interface Item {
-    examinationId : String
-    year : String
-    term : String
+    subjectId : any;
+    courseGroup : any;
+    examDate : any;
+    timeStart : any;
+    timeEnd : any;
+    buildingId : any;
+    roomName : any;
 }
 
 export interface ExamInterface {

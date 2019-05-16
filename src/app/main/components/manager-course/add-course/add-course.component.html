@@ -1,67 +1,70 @@
 <div class="input-group-append">
-    <button (click)="openModal(template)" class="btn btn-primary" type="button">
-        <i class="fa fa-plus-circle"></i>
-    </button>
+  <button (click)="openModal(template)" class="btn btn-primary" type="button">
+    <i class="fa fa-plus-circle"></i>
+  </button>
 </div>
 
 <ng-template #template>
-    <form [formGroup]="form" (submit)="onSubmit()">
-        <div class="modal-header">
-            <h4 class="modal-title pull-left">เพิ่มคอร์สเรียน</h4>
-            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                <span aria-hidden="true">&times;</span>
-            </button>
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">เพิ่มคอร์สเรียน</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">รหัสวิชา</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="subjectId" placeholder="กรุณาใส่ข้อมูล"
+            [typeahead]="subjectList" [typeaheadOptionsLimit]="7" typeaheadOptionField="subjectId"
+            (typeaheadOnSelect)="typeaheadOnSelect($event)">
+          <span *ngIf="subjectName">{{subjectName}}</span>
         </div>
-        <div class="modal-body">
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">รหัสวิชา</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" formControlName="subjectId" placeholder="กรุณาใส่ข้อมูล"
-                        [typeahead]="subjectList" [typeaheadOptionsLimit]="7" typeaheadOptionField="subjectId"
-                        (typeaheadOnSelect)="typeaheadOnSelect($event)">
-                    <span *ngIf="subjectName">{{subjectName}}</span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">กลุ่มเรียน</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" formControlName="courseGroup" placeholder="กรุณาใส่ข้อมูล">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">จำนวนที่นั่ง</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" formControlName="courseSeat" placeholder="กรุณาใส่ข้อมูล">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">อาจารย์ผู้สอน</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" formControlName="professor" placeholder="กรุณาใส่ข้อมูล">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">นิสิต</label>
-                <div class="col-sm-10">
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="studentList" (change)="onFileChange($event)">
-                            <label class="custom-file-label" for="studentList"><ng-container *ngIf="listStudentId; else showNumStudent">
-                                จำนวนนักเรียนทั้งหมด {{listStudentId.length}} คน
-                            </ng-container>
-                            <ng-template #showNumStudent>
-                                กรุณาเลือกไฟล์ Excel
-                            </ng-template>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">กลุ่มเรียน</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="courseGroup" placeholder="กรุณาใส่ข้อมูล">
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" type="reset"
-                (click)="modalRef.hide()">ยกเลิก</button>
-            <button type="submit" class="btn btn-primary" type="submit">ยืนยัน</button>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">จำนวนที่นั่ง</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="courseSeat" placeholder="กรุณาใส่ข้อมูล">
         </div>
-    </form>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">อาจารย์ผู้สอน</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="professor" placeholder="กรุณาใส่ข้อมูล"
+            [typeahead]="professorList" [typeaheadOptionsLimit]="7" typeaheadOptionField="fullName"
+            (typeaheadOnSelect)="selectProfessor($event)">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">นิสิต</label>
+        <div class="col-sm-10">
+          <div class="input-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="studentList" (change)="onFileChange($event)">
+              <label class="custom-file-label" for="studentList">
+                <ng-container *ngIf="listStudentId; else showNumStudent">
+                  จำนวนนักเรียนทั้งหมด {{listStudentId.length}} คน
+                </ng-container>
+                <ng-template #showNumStudent>
+                  กรุณาเลือกไฟล์ Excel
+                </ng-template>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" type="reset"
+        (click)="modalRef.hide()">ยกเลิก</button>
+      <button type="submit" class="btn btn-primary" type="submit">ยืนยัน</button>
+    </div>
+  </form>
 </ng-template>

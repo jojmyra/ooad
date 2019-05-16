@@ -6,6 +6,7 @@ import { CourseService } from 'src/app/service/course.service';
 import { SubjectService } from 'src/app/service/subject.service';
 import * as XLSX from 'xlsx';
 import { SystemService } from 'src/app/service/system.service';
+import { PersonService } from 'src/app/service/person.service';
 
 @Component({
   selector: 'app-add-course',
@@ -16,14 +17,19 @@ export class AddCourseComponent implements OnInit {
 
   modalRef: BsModalRef;
   form: FormGroup;
+
   subjectList: any[];
-  subjectName: string
+  subjectName: string;
+
+  professorList: any;
+  professor: any;
 
   constructor(private modalService: BsModalService,
     private alert: AlertService,
     private service: CourseService,
     private subject: SubjectService,
     private builder: FormBuilder,
+    private person: PersonService,
     private system: SystemService) {
     this.initialForm();
   }
@@ -36,11 +42,15 @@ export class AddCourseComponent implements OnInit {
     this.subjectName = e.item.subjectName;
   }
 
+  selectProfessor(e: TypeaheadMatch): void {
+    this.professor = e.item
+    console.log(this.professor)
+  }
+
   openModal(template: TemplateRef<any>) {
     this.initialForm();
     this.subjectName = null
-    this.modalRef = this.modalService.show(template);
-    this.modalRef.setClass('modal-lg')
+    this.modalRef = this.modalService.show(template, {class: "modal-lg"});
     this.subject.getSubjects({
       startPage: 1,
       limitPage: 5
@@ -51,6 +61,11 @@ export class AddCourseComponent implements OnInit {
     }).finally(() => {
       this.subjectList = this.subject.itemList.items
     })
+    this.person.getProfessor().then((result) => {
+      this.professorList = result;
+    }).catch((err) => {
+      this.alert.notify(err)
+    })
 
   }
 
@@ -58,6 +73,7 @@ export class AddCourseComponent implements OnInit {
     if (this.form.invalid && this.listStudentId === null) {
       return this.alert.someting_wrong();
     }
+    this.form.value.subjectName = this.subjectName
     this.form.value.year = this.system.systemData.year
     this.form.value.term = this.system.systemData.term
     this.form.value.student = this.listStudentId;
@@ -86,6 +102,7 @@ export class AddCourseComponent implements OnInit {
     this.listStudentId = null;
     this.form = this.builder.group({
       subjectId: ['', [Validators.required]],
+      subjectName: [''],
       courseGroup: ['', [Validators.required]],
       courseSeat: ['', [Validators.required]],
       professor: ['', [Validators.required]],
@@ -96,7 +113,7 @@ export class AddCourseComponent implements OnInit {
       term: ['', [Validators.required]]
     })
   }
-  
+
   arrayBuffer: any;
   file: File;
   listStudentId: any = null;

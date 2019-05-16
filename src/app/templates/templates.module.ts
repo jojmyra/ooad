@@ -5,7 +5,7 @@ import { ContentComponent } from './content/content.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule, ModalModule, PaginationModule, BsDatepickerModule, TypeaheadModule  } from 'ngx-bootstrap';
+import { BsDropdownModule, ModalModule, PaginationModule, BsDatepickerModule, TypeaheadModule, TimepickerModule  } from 'ngx-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
 import { PersonService } from '../service/person.service';
@@ -30,6 +30,7 @@ import { DataTablesModule } from 'angular-datatables';
     ModalModule,
     PaginationModule,
     BsDatepickerModule,
+    TimepickerModule,
     TypeaheadModule,
     AngularFontAwesomeModule,
     HttpClientModule,
@@ -47,6 +48,7 @@ import { DataTablesModule } from 'angular-datatables';
     PaginationModule.forRoot(),
     BsDatepickerModule.forRoot(),
     TypeaheadModule.forRoot(),
+    TimepickerModule.forRoot(),
     DataTablesModule
   ],
   providers: [
