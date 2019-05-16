@@ -96,6 +96,7 @@ export class AddCourseComponent implements OnInit {
     }).catch((err) => {
       this.alert.someting_wrong()
     });
+    this.professor = new Array();
     this.modalRef.hide();
   }
 
