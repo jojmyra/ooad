@@ -15,7 +15,7 @@
       </p>
     </div>
   </div>
-  <ul class="app-menu">
+  <ul class="app-menu" *ngIf="personLoginDetail">
     <!-- <li *ngIf="personLoginDetail.role != Role.Member">
             <a class="app-menu__item" [routerLink]="['/', AppURL.Authen, AuthURL.Dashboard]" routerLinkActive="active">
                 <i class="app-menu__icon fa fa-dashboard"></i>
@@ -70,47 +70,57 @@
         </li>
       </ul>
     </li> -->
-    <li class="treeview">
-      <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'manager-person']">
-        <i class="app-menu__icon fa fa-edit fa-lg"></i>
-        <span class="app-menu__label">จัดการบุคลากร</span>
-        <i class="treeview-indicator fa fa-angle-right"></i>
-      </a>
-    </li>
-    <li class="treeview">
-      <a class="app-menu__item" [routerLink]="['/main', 'manager-subject']" data-toggle="treeview">
-        <i class="app-menu__icon fa fa-th-list fa-lg"></i>
-        <span class="app-menu__label">จัดการรายวิชา</span>
-        <i class="treeview-indicator fa fa-angle-right"></i>
-      </a>
-    </li>
-    <li class="treeview">
-      <a class="app-menu__item" [routerLink]="['/main', 'manager-course']" data-toggle="treeview">
-        <i class="app-menu__icon fa fa-th-list fa-lg"></i>
-        <span class="app-menu__label">จัดการคอร์ส</span>
-        <i class="treeview-indicator fa fa-angle-right"></i>
-      </a>
-    </li>
-    <li class="treeview">
-      <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'manager-exam']">
-        <i class="app-menu__icon fa fa-book fa-lg"></i>
-        <span class="app-menu__label">จัดการการสอบ</span>
-        <i class="treeview-indicator fa fa-angle-right"></i>
-      </a>
-    </li>
-    <li class="treeview">
-      <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'manager-building']">
-        <i class="app-menu__icon fa fa-building fa-lg"></i>
-        <span class="app-menu__label">จัดการตึก</span>
-        <i class="treeview-indicator fa fa-angle-right"></i>
-      </a>
-    </li>
-    <li class="treeview">
-      <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'setting']">
-        <i class="app-menu__icon fa fa-cog fa-lg"></i>
-        <span class="app-menu__label">ตั้งค่า</span>
-        <i class="treeview-indicator fa fa-angle-right"></i>
-      </a>
-    </li>
+    <ng-container *ngIf="personLoginDetail.status == Role.Student">
+      <li class="treeview">
+        <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'manager-person']">
+          <i class="app-menu__icon fa fa-edit fa-lg"></i>
+          <span class="app-menu__label">จัดการบุคลากร</span>
+          <i class="treeview-indicator fa fa-angle-right"></i>
+        </a>
+      </li>
+      <li class="treeview">
+        <a class="app-menu__item" [routerLink]="['/main', 'manager-subject']" data-toggle="treeview">
+          <i class="app-menu__icon fa fa-th-list fa-lg"></i>
+          <span class="app-menu__label">จัดการรายวิชา</span>
+          <i class="treeview-indicator fa fa-angle-right"></i>
+        </a>
+      </li>
+      <li class="treeview">
+        <a class="app-menu__item" [routerLink]="['/main', 'manager-course']" data-toggle="treeview">
+          <i class="app-menu__icon fa fa-th-list fa-lg"></i>
+          <span class="app-menu__label">จัดการคอร์ส</span>
+          <i class="treeview-indicator fa fa-angle-right"></i>
+        </a>
+      </li>
+      <li class="treeview">
+        <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'manager-exam']">
+          <i class="app-menu__icon fa fa-book fa-lg"></i>
+          <span class="app-menu__label">จัดการการสอบ</span>
+          <i class="treeview-indicator fa fa-angle-right"></i>
+        </a>
+      </li>
+      <li class="treeview">
+        <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'manager-building']">
+          <i class="app-menu__icon fa fa-building fa-lg"></i>
+          <span class="app-menu__label">จัดการตึก</span>
+          <i class="treeview-indicator fa fa-angle-right"></i>
+        </a>
+      </li>
+      <li class="treeview">
+        <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'setting']">
+          <i class="app-menu__icon fa fa-cog fa-lg"></i>
+          <span class="app-menu__label">ตั้งค่า</span>
+          <i class="treeview-indicator fa fa-angle-right"></i>
+        </a>
+      </li>
+      <li class="treeview">
+          <a class="app-menu__item" data-toggle="treeview" [routerLink]="['/main', 'setting']">
+            <i class="app-menu__icon fa fa-cog fa-lg"></i>
+            <span class="app-menu__label">ออกจากระบบ</span>
+            <i class="treeview-indicator fa fa-angle-right"></i>
+          </a>
+        </li>
+    </ng-container>
   </ul>
+
 </aside>

@@ -57,7 +57,7 @@
                     [ngModelOptions]="{standalone: true}">
                     <ng-container *ngIf="buildingSelected; else noSelected">
                       <option *ngFor="let room of buildingSelected.room; let i = index"
-                        [ngValue]="buildingSelected.room[i]">ห้อง {{buildingSelected.room[i]}}</option>
+                        [ngValue]="buildingSelected.room[i]+' '+buildingSelected.roomSeatMax[i]">ห้อง {{buildingSelected.room[i]}}, รองรับได้สูงสุด {{buildingSelected.roomSeatMax[i]}} คน</option>
                     </ng-container>
                   </select>
                   <p>{{selectRoom}}</p>

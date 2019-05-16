@@ -23,6 +23,10 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.Role = {
+      Student: "นิสิต",
+      Teacher: "อาจารย์"
+    }    
   }
 
   private initialPersonLogin() {    
@@ -40,4 +44,5 @@ export class SidebarComponent implements OnInit {
       });
   }
 
+  Role: any;
 }
