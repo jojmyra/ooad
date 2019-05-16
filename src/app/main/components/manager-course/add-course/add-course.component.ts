@@ -55,8 +55,6 @@ export class AddCourseComponent implements OnInit {
       this.alert.notify(err)
     }).finally(() => {
       this.subjectList = this.subject.itemList.items
-      console.log(this.subjectList);
-      
     })
     this.loadProfessor()
   }
@@ -74,11 +72,9 @@ export class AddCourseComponent implements OnInit {
       return this.alert.someting_wrong();
     }
     if (!this.listStudentId) {
-      console.log("listStudentId");
       return this.alert.someting_wrong();
     }
     if (!this.professor) {
-      console.log("professor");
       return this.alert.someting_wrong();
     }
     this.form.value.professor = this.professor

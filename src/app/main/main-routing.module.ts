@@ -10,6 +10,8 @@ import { SettingComponent } from './components/setting/setting.component';
 import { ManagerPersonComponent } from './components/manager-person/manager-person.component';
 import { ManagerExaminationComponent } from './components/manager-examination/manager-examination.component';
 import { AddExaminationComponent } from './components/manager-examination/add-examination/add-examination.component';
+import { ExamComponent } from './exam/exam.component';
+import { ObserverExamComponent } from './observer-exam/observer-exam.component';
 
 const mainRouter: Routes = [
   { path: '', redirectTo: 'dashboard' },
@@ -21,7 +23,9 @@ const mainRouter: Routes = [
   { path: 'manager-subject', component: ManagerSubjectComponent },
   { path: 'manager-exam', component: ManagerExaminationComponent },
   { path: 'manager-exam/add', component: AddExaminationComponent },
-  { path: 'setting', component: SettingComponent }
+  { path: 'setting', component: SettingComponent },
+  { path: 'exam', component: ExamComponent },
+  { path: 'observer-exam', component: ObserverExamComponent }
 ];
 
 @NgModule({

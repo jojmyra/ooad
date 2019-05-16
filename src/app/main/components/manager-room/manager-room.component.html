@@ -25,7 +25,7 @@
           <!-- ค้นหา -->
           <div class="form-group">
             <div class="input-group">
-              <div class="input-group-prepend" dropdown>
+              <!-- <div class="input-group-prepend" dropdown>
                 <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
                   aria-controls="dropdown-basic">
                   {{ serachType.value }}
@@ -38,20 +38,20 @@
                     </a>
                   </li>
                 </ul>
-              </div>
+              </div> -->
 
-              <div [ngSwitch]="serachType.key">
+              <!-- <div [ngSwitch]="serachType.key">
                 <input *ngSwitchCase="'updated'" bsDaterangepicker placement="left" type="text" [(ngModel)]="searchText"
                   class="form-control" placeholder="ค้นหาข้อมูล">
                 <input *ngSwitchDefault type="text" [(ngModel)]="searchText" class="form-control"
                   placeholder="ค้นหาข้อมูล">
-              </div>
+              </div> -->
 
-              <div class="input-group-append" style="margin-right: 5px;">
+              <!-- <div class="input-group-append" style="margin-right: 5px;">
                 <button (click)="onSearchItem()" class="btn btn-primary" type="button">
                   <i class="fa fa-search"></i>
                 </button>
-              </div>
+              </div> -->
               <app-add-room></app-add-room>
             </div>
           </div>

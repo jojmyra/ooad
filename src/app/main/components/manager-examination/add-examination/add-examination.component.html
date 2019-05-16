@@ -66,7 +66,13 @@
               <div class="form-group row">
                 <label for="year" class="col-sm-2 col-form-label">ผู้คุม</label>
                 <div class="col-sm-10">
-                  <input class="form-control" name="observer" type="text" placeholder="กรุณาใส่ข้อมูล" ngModel required>
+                  <!-- <input class="form-control" name="observer" type="text" placeholder="กรุณาใส่ข้อมูล" ngModel required> -->
+                  <ng-select  [multiple]="true"
+                  [items]="observerList"
+                  bindLabel="fullName"
+                  (add)="selected($event)"
+                  (remove)="removed($event)"
+                  placeholder="ยังไม่ได้เลือกผู้คุมสอบ"></ng-select>
                 </div>
               </div>
               <div class="form-group row">

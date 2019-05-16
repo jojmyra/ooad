@@ -50,6 +50,11 @@ export class PersonService {
       .toPromise() as Promise<ItemList>
   }
 
+  getObserver() {
+    return this.http.requestGet(`api/person/observer`, this.authenticator.getAuthenticated())
+    .toPromise() as Promise<ItemList>
+  }
+
   addPerson(person: Item) {
     return this.http.requestPost(`api/person`, person, this.authenticator.getAuthenticated())
       .toPromise() as Promise<any>
