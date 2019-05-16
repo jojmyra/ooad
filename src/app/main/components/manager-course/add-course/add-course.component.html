@@ -40,6 +40,14 @@
           <input type="text" class="form-control" formControlName="professor" placeholder="กรุณาใส่ข้อมูล"
             [typeahead]="professorList" [typeaheadOptionsLimit]="7" typeaheadOptionField="fullName"
             (typeaheadOnSelect)="selectProfessor($event)">
+            
+            <ng-select  [multiple]="true"
+            [items]="professorNameList"
+            (data)="refreshValue($event)"
+            (selected)="selected($event)"
+            (removed)="removed($event)"
+            placeholder="No city selected"></ng-select>
+
         </div>
       </div>
       <div class="form-group row">

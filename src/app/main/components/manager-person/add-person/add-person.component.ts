@@ -47,7 +47,7 @@ export class AddPersonComponent implements OnInit {
         this.alert.notify(err.message)
       });
     }).catch((err) => {
-      this.alert.notify(err.message)
+      this.alert.someting_wrong()
     });
     this.initialForm();
     this.modalRef.hide();

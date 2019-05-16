@@ -13,6 +13,7 @@ import { AlertService } from '../service/alert.service';
 import { AuthenticatorService } from '../authenticator.service';
 import { HttpService } from '../http.service';
 import { DataTablesModule } from 'angular-datatables';
+import { NgSelectModule } from '@ng-select/ng-select'
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { DataTablesModule } from 'angular-datatables';
     TypeaheadModule,
     AngularFontAwesomeModule,
     HttpClientModule,
+    NgSelectModule,
     DataTablesModule
   ],
   imports: [
@@ -49,6 +51,7 @@ import { DataTablesModule } from 'angular-datatables';
     BsDatepickerModule.forRoot(),
     TypeaheadModule.forRoot(),
     TimepickerModule.forRoot(),
+    NgSelectModule,
     DataTablesModule
   ],
   providers: [

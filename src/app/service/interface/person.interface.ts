@@ -43,7 +43,7 @@ export interface Search {
     searchType?: string;
 
     startPage: number;
-    limitPage: number;
+    limitPage: number;  
 }
 
 export interface SearchKey {

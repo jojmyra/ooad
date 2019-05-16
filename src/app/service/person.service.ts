@@ -15,6 +15,11 @@ export class PersonService {
     this.itemList = itemList
   }
 
+  nameList: {_id: any; fullname: any};
+  setNameList(nameList: {_id: any; fullname: any}) {
+    this.nameList = nameList
+  }
+
   constructor(private http: HttpService,
     private authenticator: AuthenticatorService) { }
 

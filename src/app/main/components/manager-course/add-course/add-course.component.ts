@@ -21,8 +21,9 @@ export class AddCourseComponent implements OnInit {
   subjectList: any[];
   subjectName: string;
 
-  professorList: any;
+  professorList: any[];
   professor: any;
+  professorNameList: Array<String>;
 
   constructor(private modalService: BsModalService,
     private alert: AlertService,
@@ -50,7 +51,7 @@ export class AddCourseComponent implements OnInit {
   openModal(template: TemplateRef<any>) {
     this.initialForm();
     this.subjectName = null
-    this.modalRef = this.modalService.show(template, {class: "modal-lg"});
+    this.modalRef = this.modalService.show(template, { class: "modal-lg" });
     this.subject.getSubjects({
       startPage: 1,
       limitPage: 5
@@ -60,12 +61,19 @@ export class AddCourseComponent implements OnInit {
       this.alert.notify(err)
     }).finally(() => {
       this.subjectList = this.subject.itemList.items
+      console.log(this.subjectList);
+      
     })
     this.person.getProfessor().then((result) => {
-      this.professorList = result;
+      this.person.setItemList(result);
     }).catch((err) => {
       this.alert.notify(err)
+    }).finally(() => {
+      this.professorList = this.person.itemList.items
+      console.log(this.professorList);
+      
     })
+
 
   }
 
@@ -89,7 +97,7 @@ export class AddCourseComponent implements OnInit {
         this.alert.notify(err.message)
       });
     }).catch((err) => {
-      this.alert.notify(err.message)
+      this.alert.someting_wrong()
     });
     this.modalRef.hide();
   }
@@ -141,4 +149,28 @@ export class AddCourseComponent implements OnInit {
     }
   }
 
+  private value: any = ['Athens'];
+  private _disabledV: string = '0';
+  private disabled: boolean = false;
+
+  private get disabledV(): string {
+    return this._disabledV;
+  }
+
+  private set disabledV(value: string) {
+    this._disabledV = value;
+    this.disabled = this._disabledV === '1';
+  }
+
+  public selected(value: any): void {
+    console.log('Selected value is: ', value);
+  }
+
+  public removed(value: any): void {
+    console.log('Removed value is: ', value);
+  }
+
+  public refreshValue(value: any): void {
+    this.value = value;
+  }
 }

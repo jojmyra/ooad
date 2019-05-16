@@ -104,7 +104,7 @@ export class AddExaminationComponent implements OnInit {
       this.alert.notify(result.message)
       this.router.navigate([`/main/manager-exam`])
     }).catch((err) => {
-      this.alert.notify(err.message)
+      this.alert.someting_wrong()
     });
   }
 }
