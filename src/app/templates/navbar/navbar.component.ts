@@ -4,6 +4,7 @@ import { AlertService } from 'src/app/service/alert.service';
 import { AuthenticatorService } from 'src/app/authenticator.service';
 import { SystemService } from 'src/app/service/system.service';
 import { System } from 'src/app/service/interface/system';
+import { PersonService } from 'src/app/service/person.service';
 declare let App;
 @Component({
   selector: 'app-navbar',
@@ -17,7 +18,8 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router,
     private alert: AlertService,
     private authenticator: AuthenticatorService,
-    private system: SystemService) {
+    private system: SystemService,
+    private person: PersonService) {
     this.initialSystemData()
   }
 
@@ -27,6 +29,7 @@ export class NavbarComponent implements OnInit {
   onLogout() {
     this.alert.notify('ออกจากระบบสำเร็จ', 'info')
     this.authenticator.clearAuthenticated();
+    this.person.personLoginDetail = null
     this.router.navigate(['/'])
   }
 
