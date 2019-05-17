@@ -1,3 +1,66 @@
 <app-content>
+  <div class="app-title">
+    <div>
+      <h1>
+        <i class="fa fa-users"></i> รายวิชาที่ต้องคุมสอบ</h1>
+      <!-- <p>หน้าแสดงรายการ สมาชิก ค้นหา และแก้ไข</p> -->
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+      <li class="breadcrumb-item">
+        <i class="fa fa-home fa-lg"></i>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="#">รายวิชาคุมสอบ</a>
+      </li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <!-- ส่วนหัว -->
+        <div class="tile-title-w-btn">
+          <h3 class="title">
+            <i class="fa fa-list"></i> รายการวิชาคุมสอบ
+          </h3>
+          <!-- ค้นหา -->
 
+        </div>
+        <div class="tile-body" *ngIf="items">
+          <div class="table-responsive">
+            <table datatable class="table">
+              <!-- Head -->
+              <thead>
+                <tr>
+                  <th>วันที่สอบ</th>
+                  <th>เวลาเริ่มสอบ</th>
+                  <th>เวลาสิ้นสุดการสอบ</th>
+                  <th>รหัสวิชา</th>
+                  <th>ชื่อวิชา</th>
+                  <th>รหัสตึก</th>
+                  <th>ชื่อห้อง</th>
+                </tr>
+              </thead>
+              <!-- Body -->
+              <tbody>
+                <tr *ngFor="let item of items">
+                  <td>{{item.examDate}}</td>
+                  <td>{{item.timeStart}}</td>
+                  <td>{{item.timeEnd}}</td>
+                  <td>{{item.subjectId}}</td>
+                  <td>{{item.subjectName}}</td>
+                  <td>{{item.buildingId}}</td>
+                  <td>{{item.roomName}}</td>
+                </tr>
+              </tbody>
+              <!-- Foot -->
+              <tfoot>
+                <tr>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </app-content>

@@ -25,7 +25,8 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.Role = {
       Student: "นิสิต",
-      Teacher: "อาจารย์"
+      Teacher: "อาจารย์",
+      Officer: "เจ้าหน้าที่"
     }    
   }
 

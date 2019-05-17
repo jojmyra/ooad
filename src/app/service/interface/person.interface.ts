@@ -58,6 +58,7 @@ export interface ILogin {
 }
 
 export interface ILoginDetail {
+    _id: any;
     username: string;
     name: string;
     status: string;
