@@ -48,6 +48,10 @@ export class ManagerExaminationComponent implements OnInit {
   onUpdate(item): void {
     this.router.navigate(['/main/manager-exam/edit'], item)
   }
+  
+  openDetail(_id): void {
+    this.router.navigate([`/main/manager-exam/detail/${_id}`])
+  }
 
 
   private loadExams() {

@@ -17,6 +17,11 @@ export class CourseService {
     private authenticator: AuthenticatorService) {
   }
 
+  getCourse(_id: {_id: String}) {
+    return this.http.requestGet(`api/course/detail/?${$.param(_id)}`, this.authenticator.getAuthenticated())
+    .toPromise() as Promise<any>
+  }
+
   getCourses(options?: Search) {
     return this.http.requestGet(`api/course?${$.param(options)}`, this.authenticator.getAuthenticated())
     .toPromise() as Promise<ItemList>

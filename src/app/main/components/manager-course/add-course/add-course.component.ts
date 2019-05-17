@@ -140,9 +140,9 @@ export class AddCourseComponent implements OnInit {
         var workbook = XLSX.read(bstr, { type: "binary" });
         var first_sheet_name = workbook.SheetNames[0];
         var worksheet = workbook.Sheets[first_sheet_name];
-        var listStudent = XLSX.utils.sheet_to_json(worksheet, { raw: true, header: ["id", "studentName"] });
-        listStudent.shift()
-        this.listStudentId = listStudent.map(({ id }) => id)
+        var listStudent = XLSX.utils.sheet_to_json(worksheet, { raw: true, header: ["studentId", "studentName"] });
+        listStudent.shift()        
+        this.listStudentId = listStudent      
       };
     }
   }

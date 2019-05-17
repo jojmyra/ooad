@@ -98,7 +98,7 @@
                       ยังไม่มีนิสิตลงทะเบียน
                     </ng-template>
                   </td>
-                  <td><button class="btn btn-outline-primary">รายชื่อนิสิต</button></td>
+                  <td><button class="btn btn-outline-primary" (click)="openDetail(item._id)">ดูรายละเอียด</button></td>
                   <td class="text-right">
                     <!-- <ng-template [ngIf]="UserLogin.role == Role.Admin"> -->
                     <!-- <i (click)="onUpdate(item)" class="fa fa-edit cur"></i> -->

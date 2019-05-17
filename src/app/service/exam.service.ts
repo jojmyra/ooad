@@ -27,6 +27,11 @@ export class ExamService {
     .toPromise() as Promise<ItemList>
   }
 
+  getExam(_id: {_id: String}) {
+    return this.http.requestGet(`api/exam/detail/?${$.param(_id)}`, this.authenticator.getAuthenticated())
+    .toPromise() as Promise<any>
+  }
+
   addExam(Exam: Item) {
     return this.http.requestPost(`api/exam`, Exam, this.authenticator.getAuthenticated())
     .toPromise() as Promise<any>

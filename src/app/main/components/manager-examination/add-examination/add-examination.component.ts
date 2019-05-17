@@ -94,13 +94,15 @@ export class AddExaminationComponent implements OnInit {
     for (let i = 0; i < numRow; i++) {
       for (let j = 0; j < roomSeatRow; j++) {
         studentWithSeat.push({
-          studentId: student[count],
+          studentId: student[count].studentId,
+          studentName: student[count].studentName,
           roomSeat: roomSeat[i][j]
         })
         count++;
         if (count === totalStudent) break;
       }
     }
+
     // แก้ input ของวัน และเพิ่มคอสและห้องลงในข้อมูล
     form.form.value.examDate = `${form.form.value.examDate.getMonth()}/${form.form.value.examDate.getDate()}/${form.form.value.examDate.getFullYear()}`
     form.form.value.observer = this.observer

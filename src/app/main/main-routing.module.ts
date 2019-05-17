@@ -12,17 +12,21 @@ import { ManagerExaminationComponent } from './components/manager-examination/ma
 import { AddExaminationComponent } from './components/manager-examination/add-examination/add-examination.component';
 import { ExamComponent } from './exam/exam.component';
 import { ObserverExamComponent } from './observer-exam/observer-exam.component';
+import { ExamDetailComponent } from './components/manager-examination/exam-detail/exam-detail.component';
+import { CourseDetailComponent } from './components/manager-course/course-detail/course-detail.component';
 
 const mainRouter: Routes = [
   { path: '', redirectTo: 'dashboard' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'manager-person', component: ManagerPersonComponent },
   { path: 'manager-course', component: ManagerCourseComponent },
+  { path: 'manager-course/detail/:courseId', component: CourseDetailComponent },
   { path: 'manager-building', component: ManagerBuildingComponent },
   { path: 'manager-room/:buildingId', component: ManagerRoomComponent },
   { path: 'manager-subject', component: ManagerSubjectComponent },
   { path: 'manager-exam', component: ManagerExaminationComponent },
   { path: 'manager-exam/add', component: AddExaminationComponent },
+  { path: 'manager-exam/detail/:examId', component: ExamDetailComponent },
   { path: 'setting', component: SettingComponent },
   { path: 'exam', component: ExamComponent },
   { path: 'observer-exam', component: ObserverExamComponent }

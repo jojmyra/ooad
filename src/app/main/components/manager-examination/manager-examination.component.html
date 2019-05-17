@@ -75,6 +75,7 @@
                   <th>เวลาเริ้มต้น</th>
                   <th>เวลาสิ้นสุด</th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <!-- Body -->
@@ -87,6 +88,7 @@
                   <td>{{item.roomName}}</td>
                   <td>{{item.timeStart}}</td>
                   <td>{{item.timeEnd}}</td>
+                  <td><button class="btn btn-outline-primary" (click)="openDetail(item._id)">ดูรายละเอียด</button></td>
                   <td class="text-right">
                     <!-- <ng-template [ngIf]="UserLogin.role == Role.Admin"> -->
                     <!-- <i (click)="onUpdate(item._id)" class="fa fa-edit cur"></i>

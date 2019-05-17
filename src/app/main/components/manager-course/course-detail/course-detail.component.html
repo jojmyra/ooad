@@ -1,0 +1,81 @@
+<app-content>
+        <div class="app-title">
+          <div>
+            <h1><i class="fa fa-file-text-o"></i> ข้อมูลคอร์ส</h1>
+          </div>
+          <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item"><a href="#">course-detail</a></li>
+          </ul>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tile">
+              <section class="invoice" *ngIf="courseDetail">
+                <div class="row mb-4">
+                  <div class="col-6">
+                    <h2 class="page-header"><i class="fa fa-globe"></i> {{courseDetail.subjectId}} {{courseDetail.subjectName}}
+                    </h2>
+                  </div>
+                  <div class="col-6">
+                    <h5 class="text-right">กลุ่ม: {{courseDetail.courseGroup}}</h5>
+                  </div>
+                </div>
+                <div class="row invoice-info">
+                  <div class="col-6">
+                    <address><strong>จำนวนรองรับสูงสุด {{courseDetail.totalStudent}}/{{courseDetail.courseSeat}}</strong></address>
+                  </div>
+                  <div class="col-6">
+                    <address><strong>ปีการศึกษาที่ {{courseDetail.year}} ภาคการศึกษาที่ {{courseDetail.term}}</strong></address>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 table-responsive">
+                    <h4 class="page-header"><i class="fa fa-globe"></i> รายชื่อผู้คุมสอบ </h4>
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>ลำดับที่</th>
+                          <th>รายชื่อ</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of courseDetail.professor; let i = index">
+                          <td>{{i+1}}</td>
+                          <td>{{item.fullName}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row">
+                      <div class="col-12 table-responsive">
+                        <h4 class="page-header"><i class="fa fa-globe"></i> รายชื่อผู้ลงทะเบียนเรียน </h4>
+                        <table datatable class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th>ลำดับที่</th>
+                              <th>รหัสนิสิต</th>
+                              <th>ชื่อนิสิต</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of courseDetail.student; let i = index">
+                              <td>{{i+1}}</td>
+                              <td>{{item.studentId}}</td>
+                              <td>{{item.studentName}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                <div class="row d-print-none mt-2">
+                  <div class="col-12 text-right"><a class="btn btn-primary" href="javascript:window.print();"
+                      target="_blank"><i class="fa fa-print"></i> Print</a></div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </app-content>
+      

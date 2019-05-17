@@ -26,6 +26,8 @@ import { EditRoomComponent } from './components/manager-room/edit-room/edit-room
 import { EditSubjectComponent } from './components/manager-subject/edit-subject/edit-subject.component';
 import { ExamComponent } from './exam/exam.component';
 import { ObserverExamComponent } from './observer-exam/observer-exam.component';
+import { CourseDetailComponent } from './components/manager-course/course-detail/course-detail.component';
+import { ExamDetailComponent } from './components/manager-examination/exam-detail/exam-detail.component';
 
 
 @NgModule({
@@ -52,6 +54,8 @@ import { ObserverExamComponent } from './observer-exam/observer-exam.component';
     EditSubjectComponent,
     ExamComponent,
     ObserverExamComponent,
+    CourseDetailComponent,
+    ExamDetailComponent,
   ],
   imports: [
     CommonModule,

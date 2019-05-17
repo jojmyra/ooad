@@ -4,6 +4,7 @@ import { CourseService } from 'src/app/service/course.service';
 import { AlertService } from 'src/app/service/alert.service';
 import { PageChangedEvent, BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-manager-course',
   templateUrl: './manager-course.component.html',
@@ -13,7 +14,7 @@ export class ManagerCourseComponent implements OnInit {
   constructor(private service: CourseService,
     private alert: AlertService,
     private modalService: BsModalService,
-    private builder: FormBuilder) {
+    private router: Router) {
     this.loadCourses({
       startPage: this.startPage,
       limitPage: this.limitPage
@@ -49,6 +50,10 @@ export class ManagerCourseComponent implements OnInit {
 
   getRoleName(role: string): string {
     throw new Error("Method not implemented.");
+  }
+
+  openDetail(_id) {
+    this.router.navigate([`/main/manager-course/detail/${_id}`])
   }
   
   modalRef: BsModalRef;
