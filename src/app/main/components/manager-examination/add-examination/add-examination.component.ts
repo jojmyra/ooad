@@ -43,7 +43,6 @@ export class AddExaminationComponent implements OnInit {
       this.alert.notify(err.message)
     });
     this.room.getAllBuilding().then((result) => {
-      console.log(result);
       this.buildingList = result
     }).catch((err) => {
       this.alert.notify(err.message)
@@ -53,11 +52,9 @@ export class AddExaminationComponent implements OnInit {
 
   selectSubject(e: TypeaheadMatch) {
     this.subjectSelected = e.item
-    console.log(this.subjectSelected);
   }
   selectBuilding(e: TypeaheadMatch) {
     this.buildingSelected = e.item
-    console.log(this.buildingSelected)
   }
 
   onAdd(form) {
