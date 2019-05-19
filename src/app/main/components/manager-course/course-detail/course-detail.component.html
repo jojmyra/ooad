@@ -1,82 +1,145 @@
 <app-content>
-        <div class="app-title">
-          <div>
-            <h1><i class="fa fa-file-text-o"></i> ข้อมูลคอร์ส</h1>
-            <p><a [routerLink]="[ '/main', 'manager-course' ]">ย้อนกลับ</a></p>
-          </div>
-          <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="#">course-detail</a></li>
-          </ul>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="tile">
-              <section class="invoice" *ngIf="courseDetail">
-                <div class="row mb-4">
-                  <div class="col-6">
-                    <h2 class="page-header"><i class="fa fa-globe"></i> {{courseDetail.subjectId}} {{courseDetail.subjectName}}
-                    </h2>
-                  </div>
-                  <div class="col-6">
-                    <h5 class="text-right">กลุ่ม: {{courseDetail.courseGroup}}</h5>
-                  </div>
-                </div>
-                <div class="row invoice-info">
-                  <div class="col-6">
-                    <address><strong>จำนวนรองรับสูงสุด {{courseDetail.totalStudent}}/{{courseDetail.courseSeat}}</strong></address>
-                  </div>
-                  <div class="col-6">
-                    <address><strong>ปีการศึกษาที่ {{courseDetail.year}} ภาคการศึกษาที่ {{courseDetail.term}}</strong></address>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12 table-responsive">
-                    <h4 class="page-header"><i class="fa fa-globe"></i> รายชื่อผู้คุมสอบ </h4>
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>ลำดับที่</th>
-                          <th>รายชื่อ</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let item of courseDetail.professor; let i = index">
-                          <td>{{i+1}}</td>
-                          <td>{{item.fullName}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div class="row">
-                      <div class="col-12 table-responsive">
-                        <h4 class="page-header"><i class="fa fa-globe"></i> รายชื่อผู้ลงทะเบียนเรียน </h4>
-                        <table datatable class="table table-striped">
-                          <thead>
-                            <tr>
-                              <th>ลำดับที่</th>
-                              <th>รหัสนิสิต</th>
-                              <th>ชื่อนิสิต</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let item of courseDetail.student; let i = index">
-                              <td>{{i+1}}</td>
-                              <td>{{item.studentId}}</td>
-                              <td>{{item.studentName}}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                <div class="row d-print-none mt-2">
-                  <div class="col-12 text-right"><a class="btn btn-primary" href="javascript:window.print();"
-                      target="_blank"><i class="fa fa-print"></i> Print</a></div>
-                </div>
-              </section>
+  <div class="app-title">
+    <div>
+      <h1><i class="fa fa-file-text-o"></i> ข้อมูลคอร์ส</h1>
+      <p><a [routerLink]="[ '/main', 'manager-course' ]">ย้อนกลับ</a></p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+      <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+      <li class="breadcrumb-item"><a href="#">course-detail</a></li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <section class="invoice" *ngIf="courseDetail">
+          <div class="row mb-4">
+            <div class="col-6">
+              <h2 class="page-header"><i class="fa fa-globe"></i> {{courseDetail.subjectId}}
+                {{courseDetail.subjectName}}
+              </h2>
+            </div>
+            <div class="col-6">
+              <h5 class="text-right">กลุ่ม: {{courseDetail.courseGroup}}</h5>
             </div>
           </div>
+          <div class="row invoice-info">
+            <div class="col-6">
+              <address><strong>จำนวนรองรับสูงสุด {{courseDetail.totalStudent}}/{{courseDetail.courseSeat}}</strong>
+              </address>
+            </div>
+            <div class="col-6">
+              <address><strong>ปีการศึกษาที่ {{courseDetail.year}} ภาคการศึกษาที่ {{courseDetail.term}}</strong>
+              </address>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 table-responsive">
+              <div class="row mb-4">
+                <div class="col-6">
+                  <h4 class="page-header"><i class="fa fa-globe"></i> รายชื่อผู้สอน </h4>
+                </div>
+                <div class="col-6">
+                  <div class="col-12 text-right"><button class="btn btn-primary" (click)="openModal(addProfessor)"
+                    target="_blank"><i class="fa fa-plus-circle"></i> เพิ่มอาจารย์</button></div>
+                </div>
+              </div>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>ลำดับที่</th>
+                    <th>รายชื่อ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of courseDetail.professor; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{item.firstname}} {{item.lastname}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 table-responsive">
+              <div class="row mb-4">
+                <div class="col-6">
+                  <h4 class="page-header"><i class="fa fa-globe"></i> รายชื่อผู้ลงทะเบียนเรียน </h4>
+                </div>
+                <div class="col-6">
+                  <div class="col-12 text-right"><button class="btn btn-primary" (click)="openModal(addStudent)"
+                      target="_blank"><i class="fa fa-plus-circle"></i> เพิ่มนิสิต</button></div>
+                </div>
+              </div>
+              <table datatable class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>ลำดับที่</th>
+                    <th>รหัสนิสิต</th>
+                    <th>รายชื่อนิสิต</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of courseDetail.student; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{item}}</td>
+                    <td>{{courseDetail.person[i].firstname}} {{courseDetail.person[i].lastname}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <ng-template #addStudent>
+    <form [formGroup]="formStudent" (submit)="onAddStudent()">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">กรุณากรอกรหัสนิสิตที่ต้องการเพิ่ม</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">รหัสนิสิต</span>
+          </div>
+          <input type="text" class="form-control" formControlName="studentId">
         </div>
-      </app-content>
-      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" type="reset"
+          (click)="modalRef.hide()">ยกเลิก</button>
+        <button type="submit" class="btn btn-primary" type="submit">ยืนยัน</button>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template #addProfessor>
+    <form [formGroup]="formProfessor" (submit)="onAddProfessor()">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">เพิ่มผู้สอน</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">เลือกผู้สอน</span>
+          </div>
+          <!-- <input type="text" class="form-control" formControlName="professorId"> -->
+          <input type="text" class="form-control" formControlName="professorId" placeholder="กรุณาใส่ข้อมูล"
+            [typeahead]="professorList" [typeaheadOptionsLimit]="7" [typeaheadMinLength]="0" typeaheadOptionField="fullName"
+            (typeaheadOnSelect)="selected($event)">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" type="reset"
+          (click)="modalRef.hide()">ยกเลิก</button>
+        <button type="submit" class="btn btn-primary" type="submit">ยืนยัน</button>
+      </div>
+    </form>
+  </ng-template>
+</app-content>

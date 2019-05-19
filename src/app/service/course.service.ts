@@ -32,6 +32,16 @@ export class CourseService {
     .toPromise() as Promise<any>
   }
 
+  addStudentToCourse(studentId: String) {
+    return this.http.requestPost(`api/course/student`, studentId, this.authenticator.getAuthenticated())
+    .toPromise() as Promise<any>
+  }
+
+  addProfessorToCourse(professorId: String) {
+    return this.http.requestPost(`api/course/professor`, professorId, this.authenticator.getAuthenticated())
+    .toPromise() as Promise<any>
+  }
+
   deleteCourse(_id: any) {
     return this.http.requestDelete(`api/course/${_id}`, this.authenticator.getAuthenticated())
     .toPromise() as Promise<any>

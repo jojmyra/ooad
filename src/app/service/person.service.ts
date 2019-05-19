@@ -59,6 +59,11 @@ export class PersonService {
     return this.http.requestPost(`api/person`, person, this.authenticator.getAuthenticated())
       .toPromise() as Promise<any>
   }
+  
+  addStudentList(person: any) {
+    return this.http.requestPost(`api/person/student`, person, this.authenticator.getAuthenticated())
+      .toPromise() as Promise<any>
+  }
 
   editPerson(person: Item) {
     return this.http.requestPut(`api/person`, person, this.authenticator.getAuthenticated())

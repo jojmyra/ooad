@@ -21,7 +21,7 @@ export class AddCourseComponent implements OnInit {
   subjectList: any[];
   subjectName: string;
 
-  professor: any[] = new Array();
+  professor: any;
   professorList: any;
 
   constructor(private modalService: BsModalService,
@@ -77,12 +77,37 @@ export class AddCourseComponent implements OnInit {
     if (!this.professor) {
       return this.alert.someting_wrong();
     }
+    
     this.form.value.professor = this.professor
     this.form.value.subjectName = this.subjectName
     this.form.value.year = this.system.systemData.year
     this.form.value.term = this.system.systemData.term
-    this.form.value.student = this.listStudentId;
+    this.form.value.student = this.listStudentId.map(object => {
+      return object["studentId"]
+    });
     this.form.value.totalStudent = this.listStudentId.length
+
+    var listStudentForAdd = []
+
+    for (const key in this.listStudentId) {
+      if (this.listStudentId.hasOwnProperty(key)) {
+        const element = this.listStudentId[key];
+        var name = element.studentName.split(" ")
+        listStudentForAdd.push({
+          username: element.studentId,
+          firstname: name[0],
+          lastname: name[1],
+          email: `${element.studentId}@go.buu.ac.th`
+        })
+      }
+    }
+    
+    this.person.addStudentList(listStudentForAdd).then((result) => {
+      this.alert.notify(result.message, 'info')
+    }).catch((err) => {
+      this.alert.notify(err.message, 'info')
+    });
+    
     this.service.addCourse(this.form.value).then((result) => {
       this.alert.notify(result.message, 'info')
       this.service.getCourses({
@@ -141,18 +166,20 @@ export class AddCourseComponent implements OnInit {
         var first_sheet_name = workbook.SheetNames[0];
         var worksheet = workbook.Sheets[first_sheet_name];
         var listStudent = XLSX.utils.sheet_to_json(worksheet, { raw: true, header: ["studentId", "studentName"] });
-        listStudent.shift()        
-        this.listStudentId = listStudent      
+        listStudent.shift()
+        this.listStudentId = listStudent
       };
     }
   }
 
+
   public selected(value: any): void {
-    this.professor.push(value)
+    this.professor = value.item._id
+    
   }
 
-  public removed(value: any): void {
-    delete this.professor[value.index]
+  public removed(value: any): void {    
+    this.professor = null
   }
 
 }

@@ -37,17 +37,20 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">อาจารย์ผู้สอน</label>
         <div class="col-sm-10">
-          <!-- <input type="text" class="form-control" formControlName="professor" placeholder="กรุณาใส่ข้อมูล"
-            [typeahead]="professorList" [typeaheadOptionsLimit]="7" typeaheadOptionField="fullName"
-            (typeaheadOnSelect)="selectProfessor($event)"> -->
+          <input type="text" class="form-control" formControlName="professor" placeholder="กรุณาใส่ข้อมูล"
+            [typeahead]="professorList" [typeaheadOptionsLimit]="7" [typeaheadMinLength]="0" typeaheadOptionField="fullName"
+            (typeaheadOnSelect)="selected($event)">
 
-            <ng-select  [multiple]="true"
+            <!-- <ng-select  [multiple]="false"
             [items]="professorList"
             bindLabel="fullName"
             maxSelectedItems="2"
             (add)="selected($event)"
             (remove)="removed($event)"
-            placeholder="ยังไม่ได้เลือกผู้สอน"></ng-select>
+            (open)="selected($event)"
+            (close)="removed($event)"
+            [hideSelected]="true"
+            placeholder="ยังไม่ได้เลือกผู้สอน"></ng-select> -->
 
         </div>
       </div>

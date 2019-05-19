@@ -53,7 +53,7 @@ export class ExamService {
   }
 
   getObserver(option: {_id: String}) {
-    return this.http.requestGet(`api/exam/seat?${$.param(option)}`, this.authenticator.getAuthenticated())
+    return this.http.requestGet(`api/exam/observer?${$.param(option)}`, this.authenticator.getAuthenticated())
     .toPromise() as Promise<any>
   }
 

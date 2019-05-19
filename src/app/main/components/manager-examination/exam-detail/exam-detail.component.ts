@@ -29,9 +29,9 @@ export class ExamDetailComponent implements OnInit {
       _id: this.examId
     }
     this.service.getExam(_id).then((result) => {
+      console.log(result);
+      
       this.examDetail = result
-      console.log(this.examDetail);
-
     }).catch((err) => {
       this.alert.someting_wrong()
     });
