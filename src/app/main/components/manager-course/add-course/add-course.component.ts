@@ -78,7 +78,9 @@ export class AddCourseComponent implements OnInit {
       return this.alert.someting_wrong();
     }
     
-    this.form.value.professor = this.professor
+    this.form.value.professor = this.professor.map(item => {
+      return item["_id"]
+    })
     this.form.value.subjectName = this.subjectName
     this.form.value.year = this.system.systemData.year
     this.form.value.term = this.system.systemData.term
@@ -94,6 +96,7 @@ export class AddCourseComponent implements OnInit {
         const element = this.listStudentId[key];
         var name = element.studentName.split(" ")
         listStudentForAdd.push({
+          status: "นิสิต",
           username: element.studentId,
           firstname: name[0],
           lastname: name[1],
@@ -174,12 +177,8 @@ export class AddCourseComponent implements OnInit {
 
 
   public selected(value: any): void {
-    this.professor = value.item._id
+    this.professor = value
     
-  }
-
-  public removed(value: any): void {    
-    this.professor = null
   }
 
 }

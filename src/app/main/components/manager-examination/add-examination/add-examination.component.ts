@@ -83,7 +83,7 @@ export class AddExaminationComponent implements OnInit {
     var roomSeatMax = this.buildingSelected.roomSeatMax[this.selectRoom];
     var roomSeatRow = this.buildingSelected.roomSeatRow[this.selectRoom];
     var numRow = Math.ceil(totalStudent / roomSeatRow);
-
+    
     // เช็คเพื่อดูว่าที่นั่งพอจำนวนนักเรียนหรือไม่
     if (roomSeatMax < totalStudent) {
       return this.alert.notify('ที่นั่งไม่พอจำนวนนักเรียน')
@@ -94,18 +94,19 @@ export class AddExaminationComponent implements OnInit {
     for (let i = 0; i < numRow; i++) {
       for (let j = 0; j < roomSeatRow; j++) {
         studentWithSeat.push({
-          studentId: student[count].studentId,
-          studentName: student[count].studentName,
+          studentId: student[count],
           roomSeat: roomSeat[i][j]
         })
         count++;
         if (count === totalStudent) break;
       }
     }
-
+    
     // แก้ input ของวัน และเพิ่มคอสและห้องลงในข้อมูล
     form.form.value.examDate = `${form.form.value.examDate.getMonth()}/${form.form.value.examDate.getDate()}/${form.form.value.examDate.getFullYear()}`
-    form.form.value.observer = this.observer
+    form.form.value.observer = this.observer.map(item => {
+      return item["_id"]
+    })    
     form.form.value.courseGroup = this.subjectSelected.course[this.selectCourse]
     form.form.value.subjectName = this.subjectSelected.subject[this.selectCourse]
     form.form.value.roomName = this.buildingSelected.room[this.selectRoom]
@@ -127,11 +128,11 @@ export class AddExaminationComponent implements OnInit {
     })
   }
 
-  public selected(value: any): void {
-    this.observer.push(value)
+
+
+  public change(value: any): void {
+    this.observer = value
   }
 
-  public removed(value: any): void {
-    delete this.observer[value.index]
-  }
+
 }

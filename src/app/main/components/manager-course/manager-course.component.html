@@ -81,7 +81,7 @@
                   <td>
                     <ng-container *ngIf="item.professor.length > 0; else professorTemplate">
                       <ng-container *ngFor="let professor of item.professor">
-                        {{professor.fullName}}
+                        {{professor.firstname}} {{professor.lastname}}<br>
                       </ng-container>
 
                       <!-- {{item.professor}} -->
