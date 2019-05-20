@@ -48,7 +48,7 @@ export class ManagerBuildingComponent implements OnInit, buildingInterface {
   limitPage: number = 10;
 
   onPageChanged(page: PageChangedEvent) {
-    console.log(page);
+
   }
 
   getRoleName(role: string): string {

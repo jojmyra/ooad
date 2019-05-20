@@ -77,6 +77,9 @@ export class AddCourseComponent implements OnInit {
     if (!this.professor) {
       return this.alert.someting_wrong();
     }
+    if (this.form.value.courseSeat < this.listStudentId.length) {
+      return this.alert.notify('ที่นั่งไม่เพียงพอ')
+    }
     
     this.form.value.professor = this.professor.map(item => {
       return item["_id"]
