@@ -101,6 +101,7 @@ export class AddCourseComponent implements OnInit {
         listStudentForAdd.push({
           status: "นิสิต",
           username: element.studentId,
+          password: "password",
           firstname: name[0],
           lastname: name[1],
           email: `${element.studentId}@go.buu.ac.th`
