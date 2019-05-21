@@ -51,7 +51,6 @@ export class CourseDetailComponent implements OnInit {
     }
     this.service.getCourse(_id).then((result) => {
       this.courseDetail = result
-      console.log(this.courseDetail);
     }).catch((err) => {
       this.alert.someting_wrong()
     });
