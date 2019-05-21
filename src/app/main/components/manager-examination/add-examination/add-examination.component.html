@@ -35,7 +35,7 @@
                     <ng-container *ngIf="subjectSelected; else noSelected">
                       <option *ngFor="let course of subjectSelected.course; let i = index"
                         [ngValue]="i">กลุ่มที่
-                        {{subjectSelected.course[i]}} นักเรียนทั้งหมด {{subjectSelected.totalStudent[i]}}</option>
+                        {{subjectSelected.course[i]}} นักเรียนทั้งหมด {{subjectSelected.student[i].length}}</option>
                     </ng-container>
                   </select>
                   <!-- <p *ngIf="selectCourse">{{selectCourse}}</p> -->

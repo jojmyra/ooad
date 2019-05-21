@@ -75,7 +75,7 @@ export class AddExaminationComponent implements OnInit {
     // Get data preparing for insert to database
     var studentWithSeat = []
     var student = this.subjectSelected.student[this.selectCourse];
-    var totalStudent = this.subjectSelected.totalStudent[this.selectCourse];
+    var totalStudent = this.subjectSelected.student[this.selectCourse].length;
     var roomSeat = this.buildingSelected.roomSeat[this.selectRoom];
     var roomSeatMax = this.buildingSelected.roomSeatMax[this.selectRoom];
     var roomSeatRow = this.buildingSelected.roomSeatRow[this.selectRoom];
