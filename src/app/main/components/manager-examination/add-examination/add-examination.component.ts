@@ -103,7 +103,15 @@ export class AddExaminationComponent implements OnInit {
     form.form.value.examDate = `${form.form.value.examDate.getMonth()}/${form.form.value.examDate.getDate()}/${form.form.value.examDate.getFullYear()}`
     form.form.value.observer = this.observer.map(item => {
       return item["_id"]
-    })    
+    })
+    
+    this.subjectSelected.professor[this.selectCourse].forEach(item => {
+      form.form.value.observer.push(item)
+    })
+    const tempObserver = form.form.value.observer
+    form.form.value.observer = tempObserver.filter((elem, index, self) => {
+      return index === self.indexOf(elem);
+    })
     form.form.value.courseGroup = this.subjectSelected.course[this.selectCourse]
     form.form.value.subjectName = this.subjectSelected.subject[this.selectCourse]
     form.form.value.roomName = this.buildingSelected.room[this.selectRoom]
